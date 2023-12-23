@@ -51,13 +51,13 @@ public class Service {
 
 
 
-            if (diffDays > 0) {
-                System.out.print(diffDays + " days, ");
-            }
+//            if (diffDays > 0) {
+//                System.out.print(diffDays + " days, ");
+//            }
             if (diffHours > 0) {
 //                System.out.print(diffHours + " hours, ");
                 resultDouble += (double) diffHours;
-                System.out.println(resultStr);
+//                System.out.println(resultStr);
             }
             if (diffMinutes > 0) {
 //                System.out.print(diffMinutes + " minutes, ");

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class WOrder {
     private static int id=0;
     private String woName;
@@ -5,7 +7,9 @@ public class WOrder {
     private int hoursMash;
     private int idClient;
 
+
     private String workPlace;
+    protected ArrayList<WRecord> recordsList;
 
     public WOrder (String woName, int idMash, int hoursMash, int idClient, String workPlace) {
         this.id = ++id;
@@ -14,11 +18,22 @@ public class WOrder {
         this.hoursMash = hoursMash;
         this.idClient = idClient;
         this.workPlace = workPlace;
+        recordsList = new ArrayList<WRecord>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void printRecList() {
+        for (WRecord i: recordsList) {
+            System.out.println(i);
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("Работа: id %d,  наим. %s, место: %s, %d, %d часов, %d", id, woName, workPlace, idMash, hoursMash, idClient);
+        return String.format("id %d:  wo: %s, место: %s, %d, %d часов, %d", id, woName, workPlace, idMash, hoursMash, idClient);
     }
 
 }

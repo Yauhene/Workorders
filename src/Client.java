@@ -13,6 +13,6 @@ public class Client {
 
      @Override
     public String toString() {
-         return String.format("клиент %d, назв. %s, располож. %s, тип %s", id, name, location, cType);
+         return String.format("клиент %d, назв. %s, располож. %s, тип: %s", id, name, location, cType);
      }
 }

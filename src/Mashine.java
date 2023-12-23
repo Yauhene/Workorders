@@ -15,7 +15,7 @@ public class Mashine {
 
     @Override
     public String toString() {
-        return String.format("машина %d, бренд %s, модель %s, s/n %s, клиент %d",
-                id, brand, model, sNumber,idClient);
+        return String.format("машина %d, бренд %s, модель: %s, s/n %s, клиент %d",
+                id, brand, model, sNumber, idClient);
     }
 }

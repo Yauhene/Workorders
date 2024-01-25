@@ -45,7 +45,8 @@ public class Model {
                 "06", "30", "16", "30", 0, "замена ТНВД"));
         wo_1.recordsList.add(new WRecord(wo_1.getId(), "", "дорога обратно", "22","12","2023",
                 "16", "30", "17", "00", 28, ""));
-        wo_1.printRecList();
+        //wo_1.printRecList();
+        WOrder.print_WOrder(wo_1);
     }
 
 

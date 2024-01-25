@@ -42,6 +42,11 @@ public class WOrder {
         }
     }
 
+    public static void print_WOrder(WOrder wo) {
+        System.out.println(wo.toString());
+        wo.printRecList();
+    }
+
     @Override
     public String toString() {
         return String.format("id %d:  wo: %s, место: %s, %d, %d часов, %d", id, woName, workPlace, idMash, hoursMash, idClient);

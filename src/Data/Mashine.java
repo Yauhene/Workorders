@@ -1,12 +1,15 @@
+package Data;
+
 public class Mashine {
-    private static int id = 0;
+    private static int index = 0;
+    private int id;
     private String brand;
     private String model;
     private String sNumber;
     private int idClient;
 
-    public Mashine(String brand, String model, String sNumber, int idClient) {
-        this.id = ++id;
+    public Mashine(int id, String brand, String model, String sNumber, int idClient) {
+        this.id = id;
         this.brand = brand;
         this.model = model;
         this.sNumber = sNumber;

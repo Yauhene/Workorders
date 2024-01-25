@@ -1,7 +1,10 @@
+package Data;
+
 import java.util.ArrayList;
 
 public class WOrder {
-    private static int id=0;
+    private static int index=0;
+    private int id;
     private String woName;
     private int idMash;
     private int hoursMash;
@@ -9,22 +12,30 @@ public class WOrder {
 
 
     private String workPlace;
-    protected ArrayList<WRecord> recordsList;
+    public ArrayList<WRecord> recordsList;
 
-    public WOrder (String woName, int idMash, int hoursMash, int idClient, String workPlace) {
-        this.id = ++id;
+    public WOrder (int id, String woName, int idMash, int hoursMash, int idClient) {
+        this.id = id;
         this.woName = woName;
         this.idMash = idMash;
         this.hoursMash = hoursMash;
         this.idClient = idClient;
-        this.workPlace = workPlace;
         recordsList = new ArrayList<WRecord>();
     }
+
+
+    /**
+     * Метод возвращает id наряд-заказа
+     * @return
+     */
 
     public int getId() {
         return id;
     }
 
+    /**
+     * Метод вывода записей работ
+     */
     public void printRecList() {
         for (WRecord i: recordsList) {
             System.out.println(i);

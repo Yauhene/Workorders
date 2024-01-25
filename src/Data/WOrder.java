@@ -47,4 +47,19 @@ public class WOrder {
         return String.format("id %d:  wo: %s, место: %s, %d, %d часов, %d", id, woName, workPlace, idMash, hoursMash, idClient);
     }
 
+    public String getWoName() {
+        return woName;
+    }
+
+    public int getIdMash() {
+        return idMash;
+    }
+
+    public int getHoursMash() {
+        return hoursMash;
+    }
+
+    public int getIdClient() {
+        return idClient;
+    }
 }

@@ -4,15 +4,17 @@ import Data.Client;
 import Data.Mashine;
 import Data.WOrder;
 import Data.WRecord;
+import Presenter.*;
+//import src.Presenter;
  //import.filesOperations.in_out.*;
 
 import java.util.ArrayList;
 
 public class StartProgram {
     public static void main(String[] args) {
-//        filesOperations.in_out.helloFromFiles();
-        filesOperations.in_out.clientsFromFile("src/Files/clients.txt");
-        testList();
+//        filesOperations.in_out.clientsFromFile("src/Files/clients.txt");
+//        testList();
+        Presenter pres = new Presenter();
     }
 
 

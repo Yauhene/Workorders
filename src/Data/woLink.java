@@ -26,13 +26,13 @@ public class woLink {
     }
 
     /**
+     * Вывод на экран элемента woLink
      *
-     * @param wo экземпляр класса wo_Link
      */
-    public void displayWoLink(woLink wo) {
-        System.out.println("[ " + id + ", " + wo.w_order.getWoName() + ", " +
-                wo.w_order.getIdMash() + ", " +  wo.w_order.getHoursMash() + ", " +
-                wo.w_order.getIdClient() + ", " + next + ", " + getPrev() + " ]");
+    public void displayWoLink() {
+        System.out.println("[ " + id + ", " + w_order.getWoName() + ", " +
+                w_order.getIdMash() + ", " +  w_order.getHoursMash() + ", " +
+                w_order.getIdClient() + ", " + next + ", " + getPrev() + " ]");
     }
 
 } //------ конец класса woLink ---------------------------------------

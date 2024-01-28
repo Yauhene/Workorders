@@ -20,6 +20,10 @@ public class woLink {
         return prev;
     }
 
+    public int getId() {
+        return w_order.getId();
+    }
+
 
     public void setPrev(woLink prev) {
         this.prev = prev;
@@ -33,6 +37,10 @@ public class woLink {
         System.out.println("[ " + id + ", " + w_order.getWoName() + ", " +
                 w_order.getIdMash() + ", " +  w_order.getHoursMash() + ", " +
                 w_order.getIdClient() + ", " + next + ", " + getPrev() + " ]");
+        System.out.println(w_order.toString());
+        for (int i = 0; i <= w_order.recordsList.size() - 1; i ++) {
+            System.out.println(w_order.recordsList.get(i));
+        }
     }
 
 } //------ конец класса woLink ---------------------------------------

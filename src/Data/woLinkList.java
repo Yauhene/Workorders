@@ -1,9 +1,12 @@
 package Data;
 
+import java.util.*;
+
 public class woLinkList {
-    private woLink first;
-    private woLink last;
+    private static woLink first;
+    private static woLink last;
     static int elCount = 0;
+    public static HashMap<String, Integer> woLinkHashMap = new HashMap<>();
 
     public woLinkList(){
         first = null;
@@ -19,7 +22,15 @@ public class woLinkList {
         System.out.println("Current woLinkList.elCount = " + woLinkList.elCount);
     }
 
-    public void insertLast(int id, WOrder wo) {
+    /**
+     * Добавление нового элемента в конец списка воркордеров,
+     *                 id нового элемента равен id воркордера
+     * @param wo - данные элемента
+     */
+    public static void insertLast(WOrder wo) {
+        int id = wo.getId(); // извлечение id воркордера
+        woLinkHashMap.put(wo.getWoName(),wo.getId()); // Добавляем воркордер в мап воркордеров
+        //System.out.println("------------<<< " + woLinkHashMap.get(wo.getWoName()));
         // Создание нового элемента
         woLink newLink = new woLink(id, wo);
         woLinkList.elCount += 1;
@@ -36,19 +47,26 @@ public class woLinkList {
         last = newLink; // last --> newLink
     }
 
-    public void woDisplayList()
+    /**
+     * Вывод данных списка воркордеров в консоль
+     */
+    public static void woDisplayList()
     {
         System.out.println("List (first-->last): ");
         System.out.println();
         woLink current = first; // От начала списка
         while(current != null) // Перемещение до конца списка
         {
+            System.out.println("клиент id: " + current.getId());
             current.displayWoLink(); // Вывод данных
-            // System.out.println("current element: " + current + "; prev: " + current.getPrev() + "; next: " + current.next);
+             System.out.println("current element: " + current + "; prev: " + current.getPrev() + "; next: " + current.next);
+//            WOrder.print_WOrder(current);
             System.out.println();
             current = current.next; // Переход к следующему элементу
+
         }
         System.out.println("");
+
     }
     public int getElementsCount()
     {

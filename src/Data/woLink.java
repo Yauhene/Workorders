@@ -34,13 +34,22 @@ public class woLink {
      *
      */
     public void displayWoLink() {
-        System.out.println("[ " + id + ", " + w_order.getWoName() + ", " +
-                w_order.getIdMash() + ", " +  w_order.getHoursMash() + ", " +
-                w_order.getIdClient() + ", " + next + ", " + getPrev() + " ]");
+
+//        System.out.println("[ " + id + ", " + w_order.getWoName() + ", " +
+//                w_order.getIdMash() + ", " +  w_order.getHoursMash() + ", " +
+//                w_order.getIdClient() + ", " + next + ", " + getPrev() + " ]");
+
         System.out.println(w_order.toString());
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("| id      | Дата       | Начало | Конец  | Всего, ч | Тип               | Место                | Описание  ");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
         for (int i = 0; i <= w_order.recordsList.size() - 1; i ++) {
+//            System.out.println("***_begin");
+//            System.out.println();
             System.out.println(w_order.recordsList.get(i));
+//            System.out.println("***_end");
         }
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
     }
 
 } //------ конец класса woLink ---------------------------------------

@@ -41,8 +41,10 @@ public class WRecord {
     public String toString() {
 //        return String.format("WO id: %d, %s, %s, %s, %s, %s, %s", %d, %s ",
 //        idWO, wPlace, wType, wDate, wBegin, wEnd, wDuration, wDistance, wDescription);
-          return String.format("WO id: %d, %s, %s, %s-%s-%s, %s:%s, %s:%s, всего %s часов",
-        idWO, wPlace, wType, wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes, wEndHours, wEndMinutes, wDuration );
+          return String.format("|   %5d | %s-%s-%s |  %s:%s | %s:%s  |  %5s   | %-15s   | %-20s | %s ",
+        idWO, wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes, wEndHours, wEndMinutes,  wDuration, wType,  wPlace, wDescription);
 
     }
+
+
 }

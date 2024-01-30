@@ -2,6 +2,8 @@ package Data;
 
 import java.util.ArrayList;
 
+
+
 public class WOrder {
     private static int index=0;
     private int id;
@@ -30,7 +32,7 @@ public class WOrder {
      */
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -49,8 +51,10 @@ public class WOrder {
 
     @Override
     public String toString() {
-        return String.format("id %d:  wo: %s, место: %s, %d, %d часов, %d", id, woName, workPlace, idMash, hoursMash, idClient);
+            return String.format("Workorder id %d: \nномер работы: %s, код машины: %d, моточасов: %d, код клиента: %d",
+                    id, woName,  idMash, hoursMash, idClient);
     }
+
 
     public String getWoName() {
         return woName;
@@ -67,4 +71,6 @@ public class WOrder {
     public int getIdClient() {
         return idClient;
     }
+
+
 }

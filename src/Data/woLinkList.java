@@ -3,8 +3,8 @@ package Data;
 import java.util.*;
 
 public class woLinkList {
-    private static woLink first;
-    private static woLink last;
+    public static woLink first;
+    public static woLink last;
     static int elCount = 0;
     public static HashMap<String, Integer> woLinkHashMap = new HashMap<>();
 
@@ -73,5 +73,13 @@ public class woLinkList {
     public int getElementsCount()
     {
         return woLinkList.elCount;
+    }
+
+    public static woLink getFirst() {
+        return first;
+    }
+
+    public static woLink getLast() {
+        return last;
     }
 }

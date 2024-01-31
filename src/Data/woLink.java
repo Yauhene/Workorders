@@ -2,7 +2,7 @@ package Data;
 
 public class woLink {
     private int id;
-    private WOrder w_order;
+    public final WOrder w_order;
     public woLink next;
     private woLink prev;
     public int elCount = 0;

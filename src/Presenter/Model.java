@@ -2,7 +2,10 @@ package Presenter;
 
 import Data.*;
 
+import java.io.*;
 import java.util.*;
+
+import static filesOperations.in_out.*;
 
 public class Model {
     //public static ArrayList<WOrder> wo_List = new ArrayList<>();
@@ -10,15 +13,19 @@ public class Model {
     public  static ArrayList<Client> cl_List = new ArrayList<>();
     private static HashMap<String, WOrder> map_WoByName = new HashMap<>();
     private static HashMap<Integer, WOrder> map_WoById = new HashMap<>();
+    private static HashMap<Integer, ArrayList<WRecord>> map_RecordsByWo = new HashMap<>(); // ключ - id воркордера
+    // значение - ArrayList с записями
+    private static HashMap<String, ArrayList<WRecord>> map_RecordsByDate = new HashMap<>();
     private static woLinkList wo_MapList;
 
-    private woLinkList woList = new woLinkList();
+    public static woLinkList woList = new woLinkList();
 
 
-
-    public Model() {
+    public Model() throws IOException {
         testList();
     }
+
+
 
 
 
@@ -26,7 +33,7 @@ public class Model {
      * ТЕСТОВЫЙ!!!!
      * Создание начального массива данных
      */
-    public static void testList() {
+    public static void testList() throws IOException {
         Client client_1 = new Client(1,"Трест 15", "Минск", "Минина", "1", "",  "стройка");
         Client client_2 = new Client(2,"Гродножилстрой", "Гродно", "Индустриальная", "8", "",  "стройка");
         Client client_3 = new Client(3,"МАПИД", "Минск", "Глаголева", "37", "",  "стройка");
@@ -35,13 +42,12 @@ public class Model {
         cl_List.add(client_2);
         cl_List.add(client_3);
         System.out.println();
-        for (int i = 0; i <= cl_List.size() - 1; i++) {
-            System.out.println(cl_List.get(i));
-        }
-//        System.out.println(cl_List);
+//        for (int i = 0; i <= cl_List.size() - 1; i++) {
+//            System.out.println(cl_List.get(i));
+//        }
 
         Mashine mash_1 = new Mashine(1,"CAT", "D5K XL", "WWW02158", 1);
-        WOrder wo_1 = new WOrder(1, "22122023/1", 1, 12354, 1);
+        WOrder wo_1 = new WOrder(1, "22122023/1", 1, 12354, 1, 0);
 
         wo_1.recordsList = new ArrayList<WRecord>();
 
@@ -54,7 +60,7 @@ public class Model {
         hashMapWoWork(wo_1);
 
         Mashine mash_2 = new Mashine(2,"CAT", "D6T", "PEZ00365", 2);
-        WOrder wo_4 = new WOrder(4, "23122023/1", 2, 3678, 2);
+        WOrder wo_4 = new WOrder(4, "23122023/1", 2, 3678, 2, 0);
 
         wo_4.recordsList = new ArrayList<WRecord>();
 
@@ -68,7 +74,7 @@ public class Model {
         hashMapWoWork(wo_4);
 
         Mashine mash_3 = new Mashine(3,"CAT", "320D", "DHK00734", 3);
-        WOrder wo_3 = new WOrder(3, "24012024/2", 3, 0, 3);
+        WOrder wo_3 = new WOrder(3, "24012024/2", 3, 0, 3, 0);
 
         wo_3.recordsList = new ArrayList<WRecord>();
 
@@ -81,33 +87,15 @@ public class Model {
 
         hashMapWoWork(wo_3);
 
-
-//        System.out.println();
-//        System.out.println("//////" + wo_1);
-//        System.out.println(" -------> " + mash_1);
-//        System.out.println(" -------> " + client_1);
-//        WOrder.print_WOrder(wo_1);
-//
-//        System.out.println();
-//        System.out.println("//////" + wo_2);
-//        System.out.println(" -------> " + mash_2);
-//        System.out.println(" -------> " + client_2);
-//        WOrder.print_WOrder(wo_2);
-//
-//        System.out.println();
-//        System.out.println("//////" + wo_3);
-//        System.out.println(" -------> " + mash_3);
-//        System.out.println(" -------> " + client_3);
-//        WOrder.print_WOrder(wo_3);
-
         woLinkList.insertLast(wo_1);
         woLinkList.insertLast(wo_4);
         woLinkList.insertLast(wo_3);
 
         System.out.println("==========================================================");
         woLinkList.woDisplayList();
-        print_hasMapWoByName();
-
+//        print_hasMapWoByName();
+        System.out.println("Погнали запишем....");
+        to_WO_File("src/Files/workorders_probe.txt");
     }
 
     /**

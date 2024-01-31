@@ -11,17 +11,19 @@ public class WOrder {
     private int idMash;
     private int hoursMash;
     private int idClient;
+    private int countOfRecords; // количество строк-записей работ в воркордере
 
 
     private String workPlace;
     public ArrayList<WRecord> recordsList;
 
-    public WOrder (int id, String woName, int idMash, int hoursMash, int idClient) {
+    public WOrder (int id, String woName, int idMash, int hoursMash, int idClient, int countOfRecords) {
         this.id = id;
         this.woName = woName;
         this.idMash = idMash;
         this.hoursMash = hoursMash;
         this.idClient = idClient;
+        this.countOfRecords = 0;
         recordsList = new ArrayList<WRecord>();
     }
 
@@ -72,5 +74,7 @@ public class WOrder {
         return idClient;
     }
 
-
+    public int getCountOfRecords() {
+        return countOfRecords;
+    }
 }

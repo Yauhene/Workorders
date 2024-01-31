@@ -8,10 +8,11 @@ import Presenter.*;
 //import src.Presenter;
  //import.filesOperations.in_out.*;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class StartProgram {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        filesOperations.in_out.clientsFromFile("src/Files/clients.txt");
 //        testList();
         Presenter pres = new Presenter();
@@ -27,9 +28,9 @@ public class StartProgram {
         Mashine mash_3 = new Mashine(3,"CAT", "428F", "LBH00996", 2);
 
 
-        WOrder wo_1 = new WOrder(1, "03102023/1", 1, 12354, 1);
-        WOrder wo_2 = new WOrder(2, "05102023/1", 2, 3678, 2);
-        WOrder wo_3 = new WOrder(3, "05102023/2", 3, 5712, 2);
+        WOrder wo_1 = new WOrder(1, "03102023/1", 1, 12354, 1, 0);
+        WOrder wo_2 = new WOrder(2, "05102023/1", 2, 3678, 2, 0);
+        WOrder wo_3 = new WOrder(3, "05102023/2", 3, 5712, 2, 0);
 
         System.out.println();
         System.out.println(wo_1);
@@ -44,6 +45,7 @@ public class StartProgram {
         wo_1.recordsList.add(new WRecord(wo_1.getId(), "", "дорога обратно", "22","12","2023",
                 "16", "30", "17", "00", 28, ""));
         wo_1.printRecList();
+
 
     }
 

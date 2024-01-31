@@ -46,5 +46,55 @@ public class WRecord {
 
     }
 
+    public int getIdWO() {
+        return idWO;
+    }
 
+    public String getwPlace() {
+        return wPlace;
+    }
+
+    public String getwType() {
+        return wType;
+    }
+
+    public String getwDateDay() {
+        return wDateDay;
+    }
+
+    public String getwDateMonth() {
+        return wDateMonth;
+    }
+
+    public String getwDateYear() {
+        return wDateYear;
+    }
+
+    public String getwBeginHours() {
+        return wBeginHours;
+    }
+
+    public String getwBeginMinutes() {
+        return wBeginMinutes;
+    }
+
+    public String getwEndHours() {
+        return wEndHours;
+    }
+
+    public String getwEndMinutes() {
+        return wEndMinutes;
+    }
+
+    public String getwDuration() {
+        return wDuration;
+    }
+
+    public int getwDistance() {
+        return wDistance;
+    }
+
+    public String getwDescription() {
+        return wDescription;
+    }
 }

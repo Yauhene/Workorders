@@ -120,7 +120,7 @@ public class in_out {
 
     public static void main(String[] args) {
 
-        clientsFromFile("src.Files.clients.txt");
+        clientsFromFile("src/Files/clients.txt");
     }
 
     public static void helloFromFiles() {

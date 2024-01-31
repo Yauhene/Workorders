@@ -95,7 +95,7 @@ public class Model {
         woLinkList.woDisplayList();
 //        print_hasMapWoByName();
         System.out.println("Погнали запишем....");
-        to_WO_File("src/Files/workorders_probe.txt");
+        to_WO_File("src/Files/workorders.txt");
     }
 
     /**

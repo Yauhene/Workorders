@@ -1,7 +1,8 @@
 package Data;
 
-import java.util.ArrayList;
+import java.util.*;
 
+import static java.lang.Integer.parseInt;
 
 
 public class WOrder {
@@ -51,9 +52,32 @@ public class WOrder {
         wo.printRecList();
     }
 
+    public static void sortRecordsList(ArrayList rList) {
+//        System.out.println("Погнали сортировать");
+        int flag;
+        int recCount = rList.size();
+        boolean earler;
+        WRecord tempRec;
+        ArrayList<WRecord> tempArr = rList;
+
+        for (int r = 1; r < recCount; r++) {
+            flag = r;
+            while ((flag > 0 && aEarlierB(tempArr.get(flag), tempArr.get(flag - 1)))) {
+                tempRec = tempArr.get(flag);
+                tempArr.set(flag, tempArr.get(flag - 1));
+                tempArr.set((flag - 1), tempRec);
+                flag--;
+            }
+        }
+        rList = tempArr;
+//        for (int i = 0; i < rList.size(); i++) {
+//            System.out.println(rList.get(i));
+//        }
+    }
+
     @Override
     public String toString() {
-            return String.format("Workorder id %d: \nномер работы: %s, код машины: %d, моточасов: %d, код клиента: %d",
+            return String.format("Workorder id %d: Номер работы: %s, код машины: %d, моточасов: %d, код клиента: %d",
                     id, woName,  idMash, hoursMash, idClient);
     }
 
@@ -76,5 +100,69 @@ public class WOrder {
 
     public int getCountOfRecords() {
         return countOfRecords;
+    }
+
+    public static boolean aEarlierB (WRecord a, WRecord b) {
+        boolean earler = false;
+        int aYear = parseInt(a.getwDateYear());
+        int aMonth = parseInt(a.getwDateMonth());
+        int aDay = parseInt(a.getwDateDay());
+        int aHours = parseInt(a.getwBeginHours());
+        int aMinutes = parseInt(a.getwBeginMinutes());
+
+        int bYear = parseInt(b.getwDateYear());
+        int bMonth = parseInt(b.getwDateMonth());
+        int bDay = parseInt(b.getwDateDay());
+        int bHours = parseInt(b.getwBeginHours());
+        int bMinutes = parseInt(b.getwBeginMinutes());
+
+                // Обработка года
+        if (aYear < bYear) {
+            earler = true;
+        }
+        else if (aYear == bYear) {
+//            Обработка месяца
+            if (aMonth < bMonth) {
+                earler = true;
+            }
+            else if (aMonth == bMonth) {
+//                    Обработка дня
+                if (aDay < bDay) {
+                    earler = true;
+                }
+                else if (aDay == bDay) {
+//                        Обработка часов
+                    if (aHours < bHours) {
+                        earler = true;
+                    }
+                    else if (aHours == bHours) {
+//                            Обработка минут
+                        if (aMinutes < bMinutes) {
+                            earler = true;
+                        }
+                        if (aMinutes == bMinutes) {
+                            earler = false;
+                        }
+                        if (aMinutes > bMinutes) {
+                            earler = false;
+                        }
+
+                    } else if (aHours > bHours) {
+                        earler = false;
+                    }
+// обработали минуты
+                } else if (aDay > bDay) {
+                    earler = false;
+                }
+            } else if (aMonth > bMonth) {
+                earler = false;
+            }
+
+        }
+
+        else if (aYear > bYear) {
+            earler = false;
+        }
+        return earler;
     }
 }

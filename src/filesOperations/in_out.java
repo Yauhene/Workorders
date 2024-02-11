@@ -13,7 +13,7 @@ public class in_out {
      * @param fileName
      * @throws Exception
      */
-    public static void to_WO_File(String fileName) throws IOException { //throws Exception {
+    public static void WO_to_File(String fileName) throws IOException { //throws Exception {
         //ArrayList<Toy> arr = Toy.toysList;
         woLinkList wo_ll = Presenter.Model.woList;
         String tempStr = "";
@@ -30,7 +30,7 @@ public class in_out {
                         current.w_order.getHoursMash() + ";" +
                         current.w_order.getIdClient() + ";" +
                         current.w_order.recordsList.size();
-                System.out.println("tempStr = " + tempStr);
+//                System.out.println("tempStr = " + tempStr);
                 writer.write(tempStr);
                 writer.append('\n');
                 if (current.w_order.recordsList.size() != 0) {
@@ -44,10 +44,11 @@ public class in_out {
                                 current.w_order.recordsList.get(j).getwBeginMinutes() + "; " +
                                 current.w_order.recordsList.get(j).getwEndHours() + "; " +
                                 current.w_order.recordsList.get(j).getwEndMinutes() + "; " +
-                                current.w_order.recordsList.get(j).getwDuration() + "; " +
+                               // current.w_order.recordsList.get(j).getwDuration() + "; " +
                                 current.w_order.recordsList.get(j).getwType() + "; " +
                                 current.w_order.recordsList.get(j).getwPlace() + "; " +
-                                current.w_order.recordsList.get(j).getwDescription() + "; ";
+                                current.w_order.recordsList.get(j).getwDescription() + "; " +
+                                current.w_order.recordsList.get(j).getwDistance() + "; ";
                         writer.write(tempStr);
                         writer.append('\n');
                     }
@@ -65,7 +66,7 @@ public class in_out {
     /**
      * Чтение общего списка клиентов из файла
      *
-     * @param fileName
+     * @param fileName - файл-источник
      */
     public static void clientsFromFile(String fileName) {
         String tempStr = "";

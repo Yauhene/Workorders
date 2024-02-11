@@ -52,13 +52,13 @@ public class woLinkList {
      */
     public static void woDisplayList()
     {
-        System.out.println("===== Содержимое woLinkList(first-->last):");
+//        System.out.println("===== Содержимое woLinkList(first-->last):");
 //        System.out.println("List (first-->last): ");
         System.out.println();
         woLink current = first; // От начала списка
         while(current != null) // Перемещение до конца списка
         {
-            System.out.println("id работы: " + current.getId());
+//            System.out.println("id работы: " + current.getId());
             current.displayWoLink(); // Вывод данных
 //             System.out.println("current element: " + current + "; prev: " + current.getPrev() + "; next: " + current.next);
 //            WOrder.print_WOrder(current);
@@ -66,7 +66,7 @@ public class woLinkList {
             current = current.next; // Переход к следующему элементу
 
         }
-        System.out.println("===== конец распечатки woLinkList");
+//        System.out.println("===== конец распечатки woLinkList");
         System.out.println();
 
     }

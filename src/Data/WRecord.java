@@ -23,6 +23,7 @@ public class WRecord {
             String wEndHours, String wEndMinutes, int wDistance, String wDescription) {
         this.idWO = idWO;
         this.wPlace = wPlace;
+//        System.out.println("wPlace = " + wPlace);
         this.wType = wType;
         this.wDateDay = wDateDay;
         this.wDateMonth = wDateMonth;
@@ -36,13 +37,14 @@ public class WRecord {
 //        System.out.println("Description = " + wDescription);
         this.wDuration = Service.DateDifferent(wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes,
                 wDateDay, wDateMonth, wDateYear, wEndHours, wEndMinutes);
+
     }
 
     @Override
     public String toString() {
 //        return String.format("WO id: %d, %s, %s, %s, %s, %s, %s", %d, %s ",
 //        idWO, wPlace, wType, wDate, wBegin, wEnd, wDuration, wDistance, wDescription);
-          return String.format("|   %5d | %s-%s-%s |  %s:%s | %s:%s  |  %5s   | %-15s   | %-10s | %-20s ",
+          return String.format("|   %5d | %s-%s-%s |  %s:%s | %s:%s  |  %5s   | %-15s   | %-18s | %-3s | %s",
         idWO, wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes, wEndHours,
                   wEndMinutes,  wDuration, wPlace,  wType, wDistance, wDescription);
 

@@ -47,6 +47,40 @@ public class WOrder {
         }
     }
 
+    public static void printTestRecList(ArrayList<WRecord> rec) {
+            int counter = 0;
+        for (int i = 0; i < rec.size(); i++) {
+            System.out.println(counter + "-  " + "id: " + rec.get(i).getIdWO());
+            counter++;
+            System.out.println(counter + "-  " + "day: " + rec.get(i).getwDateDay());
+            counter++;
+            System.out.println(counter + "-  " + "month: " + rec.get(i).getwDateMonth());
+            counter++;
+            System.out.println(counter + "-  " + "year: " + rec.get(i).getwDateYear());
+            counter++;
+            System.out.println(counter + "-  " + "bH: " + rec.get(i).getwBeginHours());
+            counter++;
+            System.out.println(counter + "-  " + "bM: " + rec.get(i).getwBeginMinutes());
+            counter++;
+            System.out.println(counter + "-  " + "eH: " + rec.get(i).getwEndHours());
+            counter++;
+            System.out.println(counter + "-  " + "eM: " + rec.get(i).getwEndMinutes());
+            counter++;
+            System.out.println(counter + "-  " + "type: " + rec.get(i).getwType());
+            counter++;
+            System.out.println(counter + "-  " + "place: " + rec.get(i).getwPlace());
+            counter++;
+            System.out.println(counter + "-  " + "descr: " + rec.get(i).getwDescription());
+            counter++;
+            System.out.println(counter+ "-  " + "dist: " + rec.get(i).getwDistance());
+            counter++;
+            System.out.println("-  " + "----------------------------------------");
+
+            counter = 0;
+
+        }
+    }
+
     public static void print_WOrder(WOrder wo) {
         System.out.println(wo.toString());
         wo.printRecList();

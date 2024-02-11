@@ -160,7 +160,7 @@ public class Model {
                         Integer.parseInt(tempStrArr[3]),
                         Integer.parseInt(tempStrArr[4]),
                         recCount);
-                WOrder.print_WOrder(wo);
+//                WOrder.print_WOrder(wo);
                 wo.recordsList = new ArrayList<WRecord>();
                 // ----- Внесение записей о работах
                 for (int i = 0; i < recCount; i++) {
@@ -175,7 +175,7 @@ public class Model {
 //                    }
 
                     int idd = Integer.parseInt(tempStr);
-                    String wPlace = tStrArr[10].trim();
+                    String wPlace = tStrArr[9].trim();
                     String wType = tStrArr[8].trim();
                     String wDday = tStrArr[1].trim();
                     String wDmonth = tStrArr[2].trim();
@@ -194,6 +194,7 @@ public class Model {
                             dist, // расстояние
                             descr)); // описание
 //                    wo.printRecList();
+                    WOrder.printTestRecList(wo.recordsList);
                 }
 //                wo.printRecList();
                 WOrder.sortRecordsList(wo.recordsList);

@@ -7,6 +7,7 @@ import static java.lang.Integer.parseInt;
 
 public class WOrder {
     private static int index=0;
+    private static int maxId;
     private int id;
     private String woName;
     private int idMash;
@@ -26,6 +27,7 @@ public class WOrder {
         this.idClient = idClient;
         this.countOfRecords = 0;
         recordsList = new ArrayList<WRecord>();
+        if (maxId < this.id) maxId = this.id;
     }
 
 
@@ -198,5 +200,9 @@ public class WOrder {
             earler = false;
         }
         return earler;
+    }
+
+    public static int getMaxId() {
+        return maxId;
     }
 }

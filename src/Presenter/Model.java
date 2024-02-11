@@ -167,34 +167,38 @@ public class Model {
                     String tRecStr = scanner.nextLine();
                     String tStrArr[] = tRecStr.split(";");
                     tempStr = tStrArr[0].trim();
-//                    System.out.println("size = " + tStrArr.length);
                     tempStr = tempStr.substring(1);
+//                    System.out.println("tempStr = " + tempStr);
+                    tempStr += tStrArr[1].trim();
+//                    System.out.println("size = " + tStrArr.length);
+
 
 //                    for (int j = 0; j < tStrArr.length; j++) {
 //                        System.out.println("- "  + j + ": " + tStrArr[j]);
 //                    }
+                    int id = Integer.parseInt(tStrArr[0].trim().substring(1));
+                    int idd = Integer.parseInt(tStrArr[1].trim());
 
-                    int idd = Integer.parseInt(tempStr);
-                    String wPlace = tStrArr[9].trim();
-                    String wType = tStrArr[8].trim();
-                    String wDday = tStrArr[1].trim();
-                    String wDmonth = tStrArr[2].trim();
-                    String wDyear = tStrArr[3].trim();
-                    String wBegH = tStrArr[4].trim();
-                    String wBegM = tStrArr[5].trim();
-                    String wEndH = tStrArr[6].trim();
-                    String wEndM = tStrArr[7].trim();
-                    String descr = tStrArr[10].trim();
-                    int dist = Integer.parseInt(tStrArr[11].trim());
+                    String wPlace = tStrArr[10].trim();
+                    String wType = tStrArr[9].trim();
+                    String wDday = tStrArr[2].trim();
+                    String wDmonth = tStrArr[3].trim();
+                    String wDyear = tStrArr[4].trim();
+                    String wBegH = tStrArr[5].trim();
+                    String wBegM = tStrArr[6].trim();
+                    String wEndH = tStrArr[7].trim();
+                    String wEndM = tStrArr[8].trim();
+                    String descr = tStrArr[11].trim();
+                    int dist = Integer.parseInt(tStrArr[12].trim());
 
-                    wo.recordsList.add(new WRecord(idd, wPlace, wType, // id, wPlace, wType
+                    wo.recordsList.add(new WRecord(id, idd, wPlace, wType, // id, wPlace, wType
                             wDday, wDmonth, wDyear, // дата
                             wBegH, wBegM, // время начала
                             wEndH, wEndM, // время завершения
                             dist, // расстояние
                             descr)); // описание
 //                    wo.printRecList();
-                    WOrder.printTestRecList(wo.recordsList);
+//                    WOrder.printTestRecList(wo.recordsList);
                 }
 //                wo.printRecList();
                 WOrder.sortRecordsList(wo.recordsList);

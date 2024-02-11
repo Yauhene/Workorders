@@ -2,6 +2,8 @@ package Data;
 
 import Service.Service;
 public class WRecord {
+    private static int maxId;
+    private int id;
     private int idWO;
     private String wPlace;
     private String wType;
@@ -17,10 +19,11 @@ public class WRecord {
     private String wDescription = "";
 
     public WRecord(
-            int idWO, String wPlace, String wType,
+            int id, int idWO, String wPlace, String wType,
             String wDateDay, String wDateMonth, String wDateYear,
             String wBeginHours, String wBeginMinutes,
             String wEndHours, String wEndMinutes, int wDistance, String wDescription) {
+        this.id = id;
         this.idWO = idWO;
         this.wPlace = wPlace;
 //        System.out.println("wPlace = " + wPlace);
@@ -37,6 +40,7 @@ public class WRecord {
 //        System.out.println("Description = " + wDescription);
         this.wDuration = Service.DateDifferent(wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes,
                 wDateDay, wDateMonth, wDateYear, wEndHours, wEndMinutes);
+        if (maxId < this.id) maxId = this.id;
 
     }
 
@@ -44,8 +48,8 @@ public class WRecord {
     public String toString() {
 //        return String.format("WO id: %d, %s, %s, %s, %s, %s, %s", %d, %s ",
 //        idWO, wPlace, wType, wDate, wBegin, wEnd, wDuration, wDistance, wDescription);
-          return String.format("|   %5d | %s-%s-%s |  %s:%s | %s:%s  |  %5s   | %-15s   | %-18s | %-3s | %s",
-        idWO, wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes, wEndHours,
+          return String.format("|   %-5d | %s-%s-%s |  %s:%s | %s:%s  |  %5s   | %-15s   | %-18s | %-3s | %s",
+        id, wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes, wEndHours,
                   wEndMinutes,  wDuration, wPlace,  wType, wDistance, wDescription);
 
     }
@@ -100,5 +104,13 @@ public class WRecord {
 
     public String getwDescription() {
         return wDescription;
+    }
+
+    public static int getMaxId() {
+        return maxId;
+    }
+
+    public int getId() {
+        return id;
     }
 }

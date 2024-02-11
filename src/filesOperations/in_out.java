@@ -34,9 +34,11 @@ public class in_out {
                 writer.write(tempStr);
                 writer.append('\n');
                 if (current.w_order.recordsList.size() != 0) {
+//                    System.out.println("current.w_order.recordsList.size() = " + current.w_order.recordsList.size());
                     for (int j = 0; j <= current.w_order.recordsList.size() - 1; j++) {
-                        //idWO, wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes, wEndHours, wEndMinutes,  wDuration, wType,  wPlace, wDescription
-                        tempStr = "~" + current.w_order.recordsList.get(j).getIdWO() + "; " +
+                        //id, idWO, wDateDay, wDateMonth, wDateYear, wBeginHours, wBeginMinutes, wEndHours, wEndMinutes,  wDuration, wType,  wPlace, wDescription
+                        tempStr = "~" + current.w_order.recordsList.get(j).getId() + "; " +
+                                current.w_order.recordsList.get(j).getIdWO() + "; " +
                                 current.w_order.recordsList.get(j).getwDateDay() + "; " +
                                 current.w_order.recordsList.get(j).getwDateMonth() + "; " +
                                 current.w_order.recordsList.get(j).getwDateYear() + "; " +
@@ -49,6 +51,7 @@ public class in_out {
                                 current.w_order.recordsList.get(j).getwPlace() + "; " +
                                 current.w_order.recordsList.get(j).getwDescription() + "; " +
                                 current.w_order.recordsList.get(j).getwDistance() + "; ";
+//                        System.out.println("tempStr = " + tempStr);
                         writer.write(tempStr);
                         writer.append('\n');
                     }

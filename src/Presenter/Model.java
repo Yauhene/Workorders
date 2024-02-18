@@ -11,6 +11,7 @@ public class Model {
     //public static ArrayList<WOrder> wo_List = new ArrayList<>();
     public static ArrayList<Mashine> mash_List = new ArrayList<>();
     public static ArrayList<Client> cl_List = new ArrayList<>();
+    private static HashMap<Integer, Client> map_clientsById = new HashMap<>();
     private static HashMap<String, WOrder> map_WoByName = new HashMap<>();
     private static HashMap<Integer, WOrder> map_WoById = new HashMap<>();
     private static HashMap<Integer, ArrayList<WRecord>> map_RecordsByWo = new HashMap<>(); // ключ - id воркордера
@@ -20,6 +21,10 @@ public class Model {
 
     public static woLinkList woList = new woLinkList();
 
+
+    public static woLinkList getWoList() {
+        return woList;
+    }
 
     public Model() throws IOException {
         testList();
@@ -33,18 +38,20 @@ public class Model {
     public static void testList() throws IOException {
         System.out.println();
         System.out.println("****************************************************************");
+        Client.clients_from_File("src/Files/clients.txt");
         WO_from_File("src/Files/workorders.txt");
 //        woLinkList.woDisplayList();
 //        WOrder wo_0 = woLinkList.first.w_order;
 //        wo_0.recordsList = WOrder.SortRecordsList(wo_0);
 
-        Client client_1 = new Client(1, "Трест 15", "Минск", "Минина", "1", "", "стройка");
-        Client client_2 = new Client(2, "Гродножилстрой", "Гродно", "Индустриальная", "8", "", "стройка");
-        Client client_3 = new Client(3, "МАПИД", "Минск", "Глаголева", "37", "", "стройка");
 
-        cl_List.add(client_1);
-        cl_List.add(client_2);
-        cl_List.add(client_3);
+//        Client client_1 = new Client(1, "Трест 15", "Минск", "Минина", "1", "", "стройка");
+//        Client client_2 = new Client(2, "Гродножилстрой", "Гродно", "Индустриальная", "8", "", "стройка");
+//        Client client_3 = new Client(3, "МАПИД", "Минск", "Глаголева", "37", "", "стройка");
+
+//        cl_List.add(client_1);
+//        cl_List.add(client_2);
+//        cl_List.add(client_3);
         System.out.println();
 //        for (int i = 0; i <= cl_List.size() - 1; i++) {
 //            System.out.println(cl_List.get(i));

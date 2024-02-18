@@ -2,6 +2,7 @@ package Data;
 
 import java.util.*;
 
+import static Data.Client.getClients_mapById;
 import static java.lang.Integer.parseInt;
 
 
@@ -88,6 +89,10 @@ public class WOrder {
         wo.printRecList();
     }
 
+    /**
+     * == Процедура слртировки записей воркордера в порядке убывания времени записи
+     * @param rList - список записей воркордера
+     */
     public static void sortRecordsList(ArrayList rList) {
 //        System.out.println("Погнали сортировать");
         int flag;
@@ -204,5 +209,53 @@ public class WOrder {
 
     public static int getMaxId() {
         return maxId;
+    }
+
+    /**
+     * == Функция, формирующая строку краткой информации о воркордере
+     * @param wo - экземпляр класса WOrder
+     * @return
+     */
+    public static String getBriefWOInfo(WOrder wo) {
+        // Добавляем id вркордера
+        String resultString = String.format("| %5d ", wo.getId());
+        // Добавляем иия воркордера
+        resultString += String.format("| %10s ", wo.getWoName());
+        // Добавляем первую дату начала работ
+        resultString += String.format("| %2s-%2s-%4s ",
+                wo.recordsList.get(0).getwDateDay(),
+                wo.recordsList.get(0).getwDateMonth(),
+                wo.recordsList.get(0).getwDateYear());
+        // Добавляем места работ
+        for (int i = 0; i < wo.countOfRecords; i++) {
+            resultString += wo.recordsList.get(i).getwPlace() + ", ";
+        }
+        // Добавляем последнюю дату начала работ
+        resultString += String.format("| %2s-%2s-%4s ",
+                wo.recordsList.get(wo.getCountOfRecords()).getwDateDay(),
+                wo.recordsList.get(wo.getCountOfRecords()).getwDateMonth(),
+                wo.recordsList.get(wo.getCountOfRecords()).getwDateYear());
+        // Добавляем примечание о работах вркордера
+        for (int i = 0; i < wo.countOfRecords; i++) {
+            resultString += wo.recordsList.get(i).getwDescription() + ", ";
+        }
+        // Добавляем название клиента
+//        HashMap<Integer, Client> cl_map = getClients_mapById();
+//        System.out.println("id клиента: " + getClients_mapById().get(wo.getIdClient()));
+//        int cl_id = cl_map.get(wo.getIdClient());
+//        Client cl = getClients_mapById().get(wo.getIdClient());
+//        System.out.println("--- " + cl.toString());
+//        System.out.println(" клиент " + getClients_mapById().get(wo.getIdClient()).getName());
+//        System.out.println("!!! клиент " + getClients_mapById().get(wo.getIdClient()).getName() + " (" + getClients_mapById().get(wo.getIdClient()).getId() + ") ");
+        resultString += "| " + getClients_mapById().get(wo.getIdClient()).getName() +  String.format("(id %-5d)",getClients_mapById().get(wo.getIdClient()).getId());
+        resultString += "\n=========== работы: ";
+        for (int i = 0; i < wo.recordsList.size(); i++) {
+            if (!wo.recordsList.get(i).getwDescription().contains("дорога")) {
+                resultString += wo.recordsList.get(i).getwDescription() + "; ";
+            }
+
+        }
+//        String datesString = "";
+        return resultString;
     }
 }

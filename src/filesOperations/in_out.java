@@ -5,6 +5,9 @@ import Data.*;
 import java.io.*;
 import java.util.*;
 
+//import static Data.Client.clients_mapById;
+import static Data.Client.getClients_mapById;
+
 //import static Data.woLinkList.getFirstfirst;
 
 public class in_out {
@@ -66,66 +69,29 @@ public class in_out {
     }
 
 
-    /**
-     * Чтение общего списка клиентов из файла
-     *
-     * @param fileName - файл-источник
-     */
-    public static void clientsFromFile(String fileName) {
-        String tempStr = "";
-//        String tempStrArr[];
-        File file = new File(fileName);
-        try {
-            Scanner scanner = new Scanner(file);
 
-            while (scanner.hasNextLine()) {
-                String tStr = scanner.nextLine();
-                String tempStrArr[] = tStr.split(";");
-                System.out.println(tempStrArr[0] + ", " + tempStrArr[1] + ", " +tempStrArr[2] + ", " + tempStrArr[3]);
-
-//                Toy t = new Toy(Integer.parseInt(tempStrArr[1]), tempStrArr[2], tempStrArr[3]);
-//                Toy.toysList.add(t);
-//                System.out.println(t);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        //    /**
-//     * Запись общего списка игрушек в файл
-//     * @param fileName
-//     * @throws Exception
-//     */
-//    public static void toFile(String fileName) throws Exception {
-//        ArrayList<Toy> arr = Toy.toysList;
+//    public static void clientsFromFile(String fileName) {
 //        String tempStr = "";
-//        FileWriter writer = new FileWriter(fileName);
+////        String tempStrArr[];
+//        File file = new File(fileName);
 //        try {
-//            for (int i = 0; i < arr.size(); i++) {
-//                tempStr = String.valueOf(arr.get(i).id) + ";" +
-//                        String.valueOf(arr.get(i).frequency) + ";" +
-//                        String.valueOf(arr.get(i).toyType) + ";" +
-//                        String.valueOf(arr.get(i).note);
-////                System.out.println("tempStr = " + tempStr);
-//                writer.write(tempStr);
-//                writer.append('\n');
+//            Scanner scanner = new Scanner(file);
+//
+//            while (scanner.hasNextLine()) {
+//                String tStr = scanner.nextLine();
+//                String tempStrArr[] = tStr.split(";");
+//                System.out.println(tempStrArr[0] + ", " + tempStrArr[1] + ", " +tempStrArr[2] + ", " + tempStrArr[3]);
+//
 //            }
-//            writer.flush();
-//            writer.close();
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
+//        } catch (Exception e) {
+//            e.printStackTrace();
 //        }
 //    }
-//}
 
-
-    }
-
-    public static void main(String[] args) {
-
-        clientsFromFile("src/Files/clients.txt");
-    }
+//    public static void main(String[] args) {
+//
+//        clientsFromFile("src/Files/clients.txt");
+//    }
 
     public static void helloFromFiles() {
         System.out.println();
@@ -133,4 +99,6 @@ public class in_out {
         System.out.println("Hi from in_out.java !!!");
 
     }
+
+
 }

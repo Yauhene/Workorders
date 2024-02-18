@@ -44,7 +44,7 @@ public class Mashine {
                         tempStrArr[3].trim(), // серийный номер
                         Integer.parseInt(tempStrArr[4].trim())); // id клиента
 
-                System.out.println(mashine.toString());
+//                System.out.println(mashine.toString());
                 Mashine.addMashineInMapById(mashine);
             }
         } catch (Exception e) {

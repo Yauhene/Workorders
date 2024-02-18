@@ -41,80 +41,8 @@ public class Model {
         Client.clients_from_File("src/Files/clients.txt");
         Mashine.mashines_from_File("src/Files/mashines.txt");
         WO_from_File("src/Files/workorders.txt");
-//        woLinkList.woDisplayList();
-//        WOrder wo_0 = woLinkList.first.w_order;
-//        wo_0.recordsList = WOrder.SortRecordsList(wo_0);
-
-
-//        Client client_1 = new Client(1, "Трест 15", "Минск", "Минина", "1", "", "стройка");
-//        Client client_2 = new Client(2, "Гродножилстрой", "Гродно", "Индустриальная", "8", "", "стройка");
-//        Client client_3 = new Client(3, "МАПИД", "Минск", "Глаголева", "37", "", "стройка");
-
-//        cl_List.add(client_1);
-//        cl_List.add(client_2);
-//        cl_List.add(client_3);
         System.out.println();
-//        for (int i = 0; i <= cl_List.size() - 1; i++) {
-//            System.out.println(cl_List.get(i));
-//        }
-
-        Mashine mash_1 = new Mashine(1, "CAT", "D5K XL", "WWW02158", 1);
-//        WOrder wo_1 = new WOrder(1, "22122023/1", 1, 12354, 1, 0);
-//
-//        wo_1.recordsList = new ArrayList<WRecord>();
-//
-//        wo_1.recordsList.add(new WRecord(wo_1.getId(), "", "дорога", "22", "12", "2023",
-//                "06", "00", "06", "30", 28, "дорога к клиенту"));
-//        wo_1.recordsList.add(new WRecord(wo_1.getId(), "Минск", "работа", "22", "12", "2023",
-//                "06", "30", "16", "30", 0, "замена ТНВД"));
-//        wo_1.recordsList.add(new WRecord(wo_1.getId(), "", "дорога обратно", "22", "12", "2023",
-//                "16", "30", "17", "00", 28, "дорога обратно"));
-//        hashMapWoWork(wo_1);
-
-        Mashine mash_2 = new Mashine(2, "CAT", "D6T", "PEZ00365", 2);
-//        WOrder wo_4 = new WOrder(4, "23122023/1", 2, 3678, 2, 0);
-//
-//        wo_4.recordsList = new ArrayList<WRecord>();
-//
-//        wo_4.recordsList.add(new WRecord(wo_4.getId(), "", "дорога", "23", "12", "2023",
-//                "06", "00", "06", "30", 28, "дорога к клиенту"));
-//        wo_4.recordsList.add(new WRecord(wo_4.getId(), "Минск", "работа", "23", "12", "2023",
-//                "06", "30", "16", "30", 0, "замена форсунок"));
-//        wo_4.recordsList.add(new WRecord(wo_4.getId(), "", "дорога обратно", "23", "12", "2023",
-//                "16", "30", "17", "00", 28, "дорога обратно"));
-//
-//        hashMapWoWork(wo_4);
-
-        Mashine mash_3 = new Mashine(3, "CAT", "320D", "DHK00734", 3);
-//        WOrder wo_3 = new WOrder(3, "24012024/2", 3, 0, 3, 0);
-//
-//        wo_3.recordsList = new ArrayList<WRecord>();
-//
-//        wo_3.recordsList.add(new WRecord(wo_3.getId(), "", "дорога", "24", "01", "2024",
-//                "11", "00", "11", "30", 15, "дорога к клиенту"));
-//        wo_3.recordsList.add(new WRecord(wo_3.getId(), "Минск", "работа", "24", "01", "2024",
-//                "11", "30", "14", "00", 0, "Регулировка зазоров клапанов ГРМ"));
-//        wo_3.recordsList.add(new WRecord(wo_3.getId(), "", "дорога обратно", "24", "01", "2024",
-//                "14", "00", "14", "30", 28, "дорога обратно"));
-//
-//        hashMapWoWork(wo_3);
-//
-//        woList.insertLast(wo_1);
-//        woList.insertLast(wo_4);
-//        woList.insertLast(wo_3);
-
-//        System.out.println("==========================================================");
-        woLinkList.woDisplayList();
-//        print_hasMapWoByName();
-//        System.out.println("Погнали запишем....");
-//        WOrder tempWO = woList.getLast().w_order;
-//        for (int i = 0; i < woList.getLast().w_order.recordsList.size(); i++) {
-//            System.out.println(woList.getLast().w_order.recordsList.get(i));
-//        }
-//        WOrder.sortRecordsList(tempWO.recordsList);
-//        for (int i = 0; i < woList.getLast().w_order.recordsList.size(); i++) {
-//            System.out.println(woList.getLast().w_order.recordsList.get(i));
-//        }
+//        woLinkList.woDisplayList();
 
         WO_to_File("src/Files/workorders_bak.txt");
     }
@@ -125,12 +53,6 @@ public class Model {
     public static void hashMapWoWork(WOrder wo) {
         map_WoByName.put(wo.getWoName(), wo);
         map_WoById.put(wo.getId(), wo);
-//        for (Map.Entry entry: map_WoByName.entrySet()) {
-//            System.out.println("Название воркордера: " + entry.getKey() + ", указатель: " + entry.getValue());
-//            if (entry.getKey().equals("23122023/1")) {
-//                System.out.println("Bingoo!!! Это воркордер " + entry.getValue());
-//            }
-//        }
     }
 
     /**

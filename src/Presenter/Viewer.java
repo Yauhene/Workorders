@@ -30,14 +30,8 @@ public class Viewer {
             num = n;
         }
         // --- конец проверки
-//        System.out.println("Поехали выводить: ");
-//        System.out.println("n = " + n);
 
         for ( int i = 1; i <= n; i++) {
-//            System.out.println("i = " + i);
-//            System.out.println();
-//            curr.displayWoLink();
-//            System.out.println(curr.w_order);
             System.out.println(getBriefWOInfo(curr.w_order));
             System.out.println("------------------------------------------------------------------------------------------------------------------");
             curr = curr.getPrev();

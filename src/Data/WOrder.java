@@ -2,8 +2,9 @@ package Data;
 
 import java.util.*;
 
-import static Data.Client.getClients_mapById;
-import static java.lang.Integer.parseInt;
+import static Data.Client.*;
+import static Data.Mashine.get_mapMashineById;
+import static java.lang.Integer.*;
 
 
 public class WOrder {
@@ -240,14 +241,11 @@ public class WOrder {
             resultString += wo.recordsList.get(i).getwDescription() + ", ";
         }
         // Добавляем название клиента
-//        HashMap<Integer, Client> cl_map = getClients_mapById();
-//        System.out.println("id клиента: " + getClients_mapById().get(wo.getIdClient()));
-//        int cl_id = cl_map.get(wo.getIdClient());
-//        Client cl = getClients_mapById().get(wo.getIdClient());
-//        System.out.println("--- " + cl.toString());
-//        System.out.println(" клиент " + getClients_mapById().get(wo.getIdClient()).getName());
-//        System.out.println("!!! клиент " + getClients_mapById().get(wo.getIdClient()).getName() + " (" + getClients_mapById().get(wo.getIdClient()).getId() + ") ");
-        resultString += "| " + getClients_mapById().get(wo.getIdClient()).getName() +  String.format("(id %-5d)",getClients_mapById().get(wo.getIdClient()).getId());
+        resultString += String.format("| %-14s", getClients_mapById().get(wo.getIdClient()).getName());
+        resultString += String.format(" ( id %-5d)", getClients_mapById().get(wo.getIdClient()).getId());
+        resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getBrand());
+        resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getModel());
+        resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getsNumber());
         resultString += "\n=========== работы: ";
         for (int i = 0; i < wo.recordsList.size(); i++) {
             if (!wo.recordsList.get(i).getwDescription().contains("дорога")) {

@@ -39,6 +39,7 @@ public class Model {
         System.out.println();
         System.out.println("****************************************************************");
         Client.clients_from_File("src/Files/clients.txt");
+        Mashine.mashines_from_File("src/Files/mashines.txt");
         WO_from_File("src/Files/workorders.txt");
 //        woLinkList.woDisplayList();
 //        WOrder wo_0 = woLinkList.first.w_order;
@@ -229,6 +230,8 @@ public class Model {
         String tempStrArr[] = str.split("-");
         return tempStrArr;
     }
+
+
 
     public static void pause() {
         Scanner scanner = new Scanner(System.in);

@@ -107,15 +107,8 @@ public class Client {
                         tempStrArr[4].trim(), // здание
                         tempStrArr[5].trim(), // номер офиса
                         tempStrArr[6].trim());// тип клиента
-//                for (int i = 0; i < tempStrArr.length; i++) {
-//                    System.out.println(tempStrArr[i]);
-//                }
-//                System.out.println( "распечатаем клиента: " + client.toString());
 
                 Client.addClientInMapById(client);
-
-
-
             }
         } catch (Exception e) {
             e.printStackTrace();

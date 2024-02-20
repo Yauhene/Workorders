@@ -45,6 +45,7 @@ public class Model {
 //        woLinkList.woDisplayList();
 
         WO_to_File("src/Files/workorders_bak.txt");
+        Mashine.mashines_to_File("src/Files/mashines.res");
     }
 
     /**

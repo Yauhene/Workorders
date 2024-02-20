@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Mashine {
     private static int index = 0;
+    private static FileWriter writer;
     private int id;
 
     private int maxId = 0;
@@ -44,16 +45,48 @@ public class Mashine {
                         tempStrArr[3].trim(), // серийный номер
                         Integer.parseInt(tempStrArr[4].trim())); // id клиента
 
-//                System.out.println(mashine.toString());
+                System.out.println(mashine);
                 Mashine.addMashineInMapById(mashine);
+//                System.out.println(mapMashineById);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        System.out.println(mapMashineById);
+    }
+
+    public static <e> void mashines_to_File(String fileName) throws IOException { //throws Exception {
+        String tempStr = "";
+//        System.out.println(mapMashineById);
+        Set<Integer> keysMas = mapMashineById.keySet();
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            for(Integer key: keysMas) {
+//                System.out.println(mapMashineById.get(key));
+                tempStr += mapMashineById.get(key).getId() + "; ";
+                tempStr += mapMashineById.get(key).getBrand() + "; ";
+                tempStr += mapMashineById.get(key).getModel() + "; ";
+                tempStr += mapMashineById.get(key).getsNumber() + "; ";
+                tempStr += mapMashineById.get(key).getIdClient() + "; ";
+//                System.out.println(mapMashineById.get(key));
+                writer.write(tempStr);
+                writer.append('\n');
+//                System.out.println(tempStr);
+//                writer.flush();
+//                writer.close();
+            }
+//            System.out.println(tempStr);
+             writer.flush();
+//             writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 
     public static void addMashineInMapById(Mashine mashine) {
+//        System.out.println("Mashine: \n" + mashine);
         if (!mapMashineById.containsKey(mashine.getId())) {
             mapMashineById.put(mashine.getId(), mashine);
         } else {
@@ -64,6 +97,8 @@ public class Mashine {
     public static HashMap<Integer, Mashine> get_mapMashineById() {
         return mapMashineById;
     }
+
+
 
 
         @Override

@@ -3,7 +3,7 @@ package Data;
 import java.util.*;
 
 import static Data.Client.*;
-import static Data.Mashine.get_mapMashineById;
+import static Data.Mashine.*;
 import static java.lang.Integer.*;
 
 

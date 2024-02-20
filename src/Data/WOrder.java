@@ -283,7 +283,7 @@ public class WOrder {
             resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getBrand());
             resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getModel());
             resultString += String.format(" | %-10s |", get_mapMashineById().get(wo.getIdMash()).getsNumber());
-            resultString += "\n работы: ";
+            resultString += "\n         работы: ";
             for (int j = 0; j < wo.recordsList.size(); j++) {
                 if (!wo.recordsList.get(j).getwDescription().contains("дорога")) {
                     resultString += wo.recordsList.get(j).getwDescription() + "; ";

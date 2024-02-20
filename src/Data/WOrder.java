@@ -246,7 +246,7 @@ public class WOrder {
         resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getBrand());
         resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getModel());
         resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getsNumber());
-        resultString += "\n=========== работы: ";
+        resultString += "\n работы: ";
         for (int i = 0; i < wo.recordsList.size(); i++) {
             if (!wo.recordsList.get(i).getwDescription().contains("дорога")) {
                 resultString += wo.recordsList.get(i).getwDescription() + "; ";

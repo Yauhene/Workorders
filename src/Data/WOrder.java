@@ -8,7 +8,7 @@ import static java.lang.Integer.*;
 
 
 public class WOrder {
-    private static int index=0;
+    private static int index = 0;
     private static int maxId;
     private int id;
     private String woName;
@@ -21,7 +21,7 @@ public class WOrder {
     private String workPlace;
     public ArrayList<WRecord> recordsList;
 
-    public WOrder (int id, String woName, int idMash, int hoursMash, int idClient, int countOfRecords) {
+    public WOrder(int id, String woName, int idMash, int hoursMash, int idClient, int countOfRecords) {
         this.id = id;
         this.woName = woName;
         this.idMash = idMash;
@@ -35,6 +35,7 @@ public class WOrder {
 
     /**
      * Метод возвращает id наряд-заказа
+     *
      * @return
      */
 
@@ -46,13 +47,13 @@ public class WOrder {
      * Метод вывода записей работ
      */
     public void printRecList() {
-        for (WRecord i: recordsList) {
+        for (WRecord i : recordsList) {
             System.out.println(i);
         }
     }
 
     public static void printTestRecList(ArrayList<WRecord> rec) {
-            int counter = 0;
+        int counter = 0;
         for (int i = 0; i < rec.size(); i++) {
             System.out.println(counter + "-  " + "id: " + rec.get(i).getIdWO());
             counter++;
@@ -76,7 +77,7 @@ public class WOrder {
             counter++;
             System.out.println(counter + "-  " + "descr: " + rec.get(i).getwDescription());
             counter++;
-            System.out.println(counter+ "-  " + "dist: " + rec.get(i).getwDistance());
+            System.out.println(counter + "-  " + "dist: " + rec.get(i).getwDistance());
             counter++;
             System.out.println("-  " + "----------------------------------------");
 
@@ -92,6 +93,7 @@ public class WOrder {
 
     /**
      * == Процедура слртировки записей воркордера в порядке убывания времени записи
+     *
      * @param rList - список записей воркордера
      */
     public static void sortRecordsList(ArrayList rList) {
@@ -119,8 +121,8 @@ public class WOrder {
 
     @Override
     public String toString() {
-            return String.format("Workorder id %d: Номер работы: %s, код машины: %d, моточасов: %d, код клиента: %d",
-                    id, woName,  idMash, hoursMash, idClient);
+        return String.format("Workorder id %d: Номер работы: %s, код машины: %d, моточасов: %d, код клиента: %d",
+                id, woName, idMash, hoursMash, idClient);
     }
 
 
@@ -144,7 +146,7 @@ public class WOrder {
         return countOfRecords;
     }
 
-    public static boolean aEarlierB (WRecord a, WRecord b) {
+    public static boolean aEarlierB(WRecord a, WRecord b) {
         boolean earler = false;
         int aYear = parseInt(a.getwDateYear());
         int aMonth = parseInt(a.getwDateMonth());
@@ -158,26 +160,22 @@ public class WOrder {
         int bHours = parseInt(b.getwBeginHours());
         int bMinutes = parseInt(b.getwBeginMinutes());
 
-                // Обработка года
+        // Обработка года
         if (aYear < bYear) {
             earler = true;
-        }
-        else if (aYear == bYear) {
+        } else if (aYear == bYear) {
 //            Обработка месяца
             if (aMonth < bMonth) {
                 earler = true;
-            }
-            else if (aMonth == bMonth) {
+            } else if (aMonth == bMonth) {
 //                    Обработка дня
                 if (aDay < bDay) {
                     earler = true;
-                }
-                else if (aDay == bDay) {
+                } else if (aDay == bDay) {
 //                        Обработка часов
                     if (aHours < bHours) {
                         earler = true;
-                    }
-                    else if (aHours == bHours) {
+                    } else if (aHours == bHours) {
 //                            Обработка минут
                         if (aMinutes < bMinutes) {
                             earler = true;
@@ -200,9 +198,7 @@ public class WOrder {
                 earler = false;
             }
 
-        }
-
-        else if (aYear > bYear) {
+        } else if (aYear > bYear) {
             earler = false;
         }
         return earler;
@@ -213,7 +209,41 @@ public class WOrder {
     }
 
     /**
+     * == Функция вывода "шапки" списка воркордеров
+     *
+     * @return
+     */
+    public static String showHeaderForMenu() {
+//        return String.format("WO id: %d, %s, %s, %s, %s, %s, %s", %d, %s ",
+//        idWO, wPlace, wType, wDate, wBegin, wEnd, wDuration, wDistance, wDescription);
+//        return String.format("|   %-5d | %s-%s-%s |  %s:%s | %s:%s  |  %5s   | %-15s   | %-18s | %-3s | %s",
+//                wo.getId(),
+//                wo.recordsList.get(0).getwDateDay(), wo.recordsList.get(0).getwDateMonth(),  wo.recordsList.get(0).getwDateYear(),
+//                wBeginHours, wBeginMinutes, wEndHours, wEndMinutes,  wDuration, wPlace,  wType, wDistance, wDescription);
+//        System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("=================================================================================================================================");
+        // Добавляем id вркордера
+        String resultString = "|  id   "; // id
+        // Добавляем иия воркордера
+        resultString += "|     WO     ";
+        // Добавляем первую дату начала работ
+        resultString += "|  Дата нач. ";
+        // Добавляем последнюю дату начала работ
+        resultString += String.format("| %-10s ",
+                "Дата кон.");
+        // Добавляем места работ
+        resultString += "|  Место     ";
+        // Добавляем клиента
+        resultString += String.format("|      Клиент (id кл.)      ");
+        resultString += String.format(" | %-10s", "Бренд");
+        resultString += String.format(" | %-10s", "Модель");
+        resultString += String.format(" | %-10s |", "S/N");
+        return resultString;
+    }
+
+    /**
      * == Функция, формирующая строку краткой информации о воркордере
+     *
      * @param wo - экземпляр класса WOrder
      * @return
      */
@@ -240,19 +270,26 @@ public class WOrder {
         for (int i = 0; i < wo.countOfRecords; i++) {
             resultString += wo.recordsList.get(i).getwDescription() + ", ";
         }
-        // Добавляем название клиента
-        resultString += String.format("| %-14s", getClients_mapById().get(wo.getIdClient()).getName());
-        resultString += String.format(" ( id %-5d)", getClients_mapById().get(wo.getIdClient()).getId());
-        resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getBrand());
-        resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getModel());
-        resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getsNumber());
-        resultString += "\n работы: ";
+        // Добавляем место проведения работ
         for (int i = 0; i < wo.recordsList.size(); i++) {
             if (!wo.recordsList.get(i).getwDescription().contains("дорога")) {
-                resultString += wo.recordsList.get(i).getwDescription() + "; ";
+                resultString += String.format("| %-10s ", wo.recordsList.get(i).getwPlace());
+                break;
+            }
+        }
+            // Добавляем клиента
+            resultString += String.format("| %-14s", getClients_mapById().get(wo.getIdClient()).getName());
+            resultString += String.format(" ( id %-5d)", getClients_mapById().get(wo.getIdClient()).getId());
+            resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getBrand());
+            resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getModel());
+            resultString += String.format(" | %-10s |", get_mapMashineById().get(wo.getIdMash()).getsNumber());
+            resultString += "\n работы: ";
+            for (int j = 0; j < wo.recordsList.size(); j++) {
+                if (!wo.recordsList.get(j).getwDescription().contains("дорога")) {
+                    resultString += wo.recordsList.get(j).getwDescription() + "; ";
+                }
             }
 
-        }
 //        String datesString = "";
         return resultString;
     }

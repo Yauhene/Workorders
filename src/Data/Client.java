@@ -115,6 +115,39 @@ public class Client {
         }
     }
 
+    public static <e> void clients_to_File(String fileName) throws IOException { //throws Exception {
+        String tempStr = "";
+//        System.out.println(mapMashineById);
+        Set<Integer> keysClients = clients_mapById.keySet();
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            for(Integer key: keysClients) {
+                tempStr = "";
+//                System.out.println(mapMashineById.get(key));
+                tempStr += clients_mapById.get(key).getId() + "; ";
+                tempStr += clients_mapById.get(key).getName() + "; ";
+                tempStr += clients_mapById.get(key).getLocPlace() + "; ";
+                tempStr += clients_mapById.get(key).getLocStreet() + "; ";
+                tempStr += clients_mapById.get(key).getLocBuilding() + "; ";
+                tempStr += clients_mapById.get(key).getLocOffice() + "; ";
+                tempStr += clients_mapById.get(key).getcType() + "; ";
+//                System.out.println(mapMashineById.get(key));
+                writer.write(tempStr);
+                writer.append('\n');
+//                System.out.println(tempStr);
+                writer.flush();
+//                writer.close();
+            }
+//            System.out.println(tempStr);
+            writer.flush();
+//             writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
     @Override
     public String toString() {
          return String.format("клиент: id %d, назв. %s, нас.пункт %s, улица %s, дом %s, офис %s, тип: %s", id, name, locPlace, locStreet, locBuilding, locOffice, cType);

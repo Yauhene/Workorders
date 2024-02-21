@@ -37,15 +37,22 @@ public class Model {
      */
     public static void testList() throws IOException {
         System.out.println();
-        System.out.println("****************************************************************");
+        System.out.println("*********************************************************************************************************************************");
         Client.clients_from_File("src/Files/clients.txt");
+        Client.clients_to_File("src/Files/clients.bak");
+
         Mashine.mashines_from_File("src/Files/mashines.txt");
+        Mashine.mashines_to_File("src/Files/mashines.bak");
+
         WO_from_File("src/Files/workorders.txt");
+        WO_to_File("src/Files/workorders.bak");
+
         System.out.println();
 //        woLinkList.woDisplayList();
 
-        WO_to_File("src/Files/workorders_bak.txt");
-        Mashine.mashines_to_File("src/Files/mashines.res");
+        WO_to_File("src/Files/workorders.txt");
+        Mashine.mashines_to_File("src/Files/mashines.txt");
+        Client.clients_to_File("src/Files/clients.txt");
     }
 
     /**

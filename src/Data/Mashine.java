@@ -12,7 +12,7 @@ public class Mashine {
     private String brand;
     private String model;
     private String sNumber;
-    private static int idClient;
+    private int idClient;
     private static HashMap<Integer, Mashine> mapMashineById = new HashMap<>();
 
     public Mashine(int id, String brand, String model, String sNumber, int idClient) {
@@ -44,11 +44,16 @@ public class Mashine {
                         tempStrArr[2].trim(), // модель
                         tempStrArr[3].trim(), // серийный номер
                         Integer.parseInt(tempStrArr[4].trim())); // id клиента
-
-                System.out.println(mashine);
+//                System.out.println();
+//                System.out.println("Распечатка из Mashine.mashines_from_File после создания экземпляра машины");
+//                System.out.println(mashine);
                 Mashine.addMashineInMapById(mashine);
+
 //                System.out.println(mapMashineById);
             }
+//            System.out.println();
+//            System.out.println("Распечатка из Mashine.mashines_from_File после внесения машин в мапу");
+//            System.out.println(mapMashineById);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,6 +67,7 @@ public class Mashine {
 
         try (FileWriter writer = new FileWriter(fileName)) {
             for(Integer key: keysMas) {
+                tempStr = "";
 //                System.out.println(mapMashineById.get(key));
                 tempStr += mapMashineById.get(key).getId() + "; ";
                 tempStr += mapMashineById.get(key).getBrand() + "; ";
@@ -72,7 +78,7 @@ public class Mashine {
                 writer.write(tempStr);
                 writer.append('\n');
 //                System.out.println(tempStr);
-//                writer.flush();
+                writer.flush();
 //                writer.close();
             }
 //            System.out.println(tempStr);
@@ -86,9 +92,28 @@ public class Mashine {
 
 
     public static void addMashineInMapById(Mashine mashine) {
+//        System.out.println();
+//        System.out.println("Распечатка из Mashine.addMashineInMapById на входе");
 //        System.out.println("Mashine: \n" + mashine);
         if (!mapMashineById.containsKey(mashine.getId())) {
+
+//            System.out.println();
+//            System.out.println("Перед самым внесением машины в мапу в addMashineInMapById:");
+//            System.out.println("id " + mashine.getId() + ", mashine: "+ mashine.model + " " + mashine.getIdClient());
+
             mapMashineById.put(mashine.getId(), mashine);
+
+//            System.out.println();
+//            System.out.println("Запись в мапе после внесения машины по ключу '1': ");
+//            System.out.println("id " + mapMashineById.get(1).getId()
+//                    + ", mashine: "+mapMashineById.get(1).getModel()
+//                    + " " + mapMashineById.get(1).getIdClient());
+//            System.out.println();
+
+//            System.out.println();
+//            System.out.println("После внесения машины в мапу в addMashineInMapById:");
+//            System.out.println("id " + mashine.getId() + ", mashine: "+ mashine.model + " " + mashine.getIdClient());
+
         } else {
             System.out.println("Ошибка!!! Мапа cmapMashineByIdd уже содержит такой ключ.");
         }

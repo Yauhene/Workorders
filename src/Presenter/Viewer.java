@@ -2,13 +2,48 @@ package Presenter;
 
 import Data.*;
 
+import java.util.*;
+
 import static Data.WOrder.getBriefWOInfo;
 
 public class Viewer {
 
     public static String mainMenu(woLinkList woList) {
         String result = "";
-        listShow(Presenter.woListForPresenter, 10);
+        boolean getOut = false; // флаг выхода из главного меню
+        String respondString = ""; // строка-ответ
+        Scanner scan = new Scanner(System.in);
+        listShow(Presenter.woListForPresenter, 7);
+        System.out.println(bottomMainMenu());
+        while (!getOut) {
+            respondString = "";
+            System.out.print("Ваш выбор: ");
+            respondString = scan.nextLine();
+            switch (respondString) {
+                case "1" : {
+                    System.out.println("Меню воркордеров в разработке");
+                    break;
+                }
+                case "2" : {
+                    MenuClients.menu();
+                    break;
+                }
+                case "3" : {
+                    System.out.println("Меню машин в разработке");
+                    break;
+                }
+                case "0", "" : {
+                    System.out.println("Пока-пока! ---------------------------------------------------");
+                    getOut = true;
+                    break;
+                }
+                default: {
+                    System.out.println("Ввод неверный, попробуйте еще раз");
+                    break;
+                }
+            }
+
+        }
 
 
 
@@ -41,6 +76,27 @@ public class Viewer {
         }
 
     }
+    /**
+     * функция вывода нижнего меню
+     * @return
+     */
+    public static String bottomMainMenu() {
+        String outString = " ";
+        System.out.println("=================================================================================================================================");
+        outString += " Категории: \n" ;
+        outString += " 0 - Выход; " + "1 - Воркордеры; " + "2 - Клиенты; " + "3 - Машины; ";
 
+
+        return outString;
+    }
+
+    public static String bottomMenu(String category) {
+        String outString = " " + category;
+        System.out.println("=================================================================================================================================");
+        outString += ": \n" ;
+        outString += " 0 - Выход; " + "1 - Найти; " + "2 - Выбрать; " + "3 - Редактировать; " + "4 - Добавить" + "5 - Удалить";
+        return outString;
+
+    }
 
 }

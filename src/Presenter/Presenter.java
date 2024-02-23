@@ -27,4 +27,20 @@ public class Presenter {
         String result = Viewer.mainMenu(woList);
         return result;
     }
+
+    /**
+     * функция вывода нижнего меню
+     * @return
+     */
+    public static String bootomMenu() {
+        String outString = "";
+        System.out.println("=================================================================================================================================");жж
+        outString += " 0 - Выход; " +
+                "1 - Добавить; " +
+                "2 - Редактировать; " +
+                "3 - Удалить; " +
+                "4 - Найти; ";
+
+        return outString;
+    }
 }

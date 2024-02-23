@@ -62,8 +62,11 @@ public class MenuClients {
     }
 
     public static void clientsListShow(HashMap<Integer, Client> map ){
-        for (Map.Entry entry: map.entrySet()) {
-            System.out.println(entry);
+        Client client;
+        for ( Map.Entry entry: map.entrySet()) {
+            client = (Client) entry.getValue();
+            System.out.println(entry.getKey() + " " + client.getName() + " " + client.getLocPlace() + " " + client.getcType());
+//            System.out.println(entry);
         }
 
     }

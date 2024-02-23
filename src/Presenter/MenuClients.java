@@ -15,10 +15,12 @@ public class MenuClients {
         Scanner scan = new Scanner(System.in);
 //        listShow(Presenter.woListForPresenter, 7);
 //        showHeaderForMenu();   !!! Уйдет в clientsListShow
-        clientsListShow(Client.getClients_mapById());
+
 
         System.out.println(bottomMenu("Клиенты"));
         while (!getOut) {
+            Viewer.screenClear();
+            clientsListShow(Client.getClients_mapById());
             respondString = "";
             System.out.print("Ваш выбор: ");
             respondString = scan.nextLine();
@@ -44,7 +46,7 @@ public class MenuClients {
                     break;
                 }
                 case "0", "" : {
-                    System.out.println("Пока-пока! ---------------------------------------------------");
+//                    System.out.println("Пока-пока! ---------------------------------------------------");
                     getOut = true;
                     break;
                 }

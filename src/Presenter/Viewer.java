@@ -13,9 +13,11 @@ public class Viewer {
         boolean getOut = false; // флаг выхода из главного меню
         String respondString = ""; // строка-ответ
         Scanner scan = new Scanner(System.in);
-        listShow(Presenter.woListForPresenter, 7);
-        System.out.println(bottomMainMenu());
+
         while (!getOut) {
+            screenClear();
+            listShow(Presenter.woListForPresenter, 7);
+            System.out.println(bottomMainMenu());
             respondString = "";
             System.out.print("Ваш выбор: ");
             respondString = scan.nextLine();
@@ -97,6 +99,12 @@ public class Viewer {
         outString += " 0 - Выход; " + "1 - Найти; " + "2 - Выбрать; " + "3 - Редактировать; " + "4 - Добавить" + "5 - Удалить";
         return outString;
 
+    }
+
+    public static void screenClear() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
     }
 
 }

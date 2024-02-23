@@ -6,8 +6,8 @@ import static Data.WOrder.getBriefWOInfo;
 
 public class Viewer {
 
-    public int mainMenu() {
-        int result = 0;
+    public static String mainMenu(woLinkList woList) {
+        String result = "";
         listShow(Presenter.woListForPresenter, 10);
 
 
@@ -20,12 +20,13 @@ public class Viewer {
      * @param list - список woLinkList
      * @param num - количество выводимых элементов
      */
-    public void listShow(woLinkList list, int num) {
+    public static void listShow(woLinkList list, int num) {
         System.out.println(WOrder.showHeaderForMenu());
 //        int n = 0;
         int n = list.getElementsCount();
 //        woLink element = list.last;
         woLink curr = list.last;
+//        woLinkList.setCurrentElement(0);
         // Проверка на существование выводимого числа элементов в списке list
         if (num > n) {
             num = n;

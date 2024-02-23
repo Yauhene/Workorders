@@ -5,12 +5,14 @@ import java.util.*;
 public class woLinkList {
     public static woLink first;
     public static woLink last;
+    public static woLink currEl; // текущая позиция в связанном списке
     static int elCount = 0;
     public static HashMap<String, Integer> woLinkHashMap = new HashMap<>();
 
     public woLinkList(){
         first = null;
         last = null;
+        currEl = last;
     }
 
     public void insertFirst(int id, WOrder wo) {
@@ -45,6 +47,7 @@ public class woLinkList {
         newLink.setPrev(last); // newLink --> старое значение last
         last.next = newLink;
         last = newLink; // last --> newLink
+        currEl = last;
     }
 
     /**
@@ -69,6 +72,17 @@ public class woLinkList {
 //        System.out.println("===== конец распечатки woLinkList");
         System.out.println();
 
+    }
+    public static void setCurrentElement(int offset) {
+        if (offset < woLinkList.elCount) {
+            offset = woLinkList.elCount-1;
+            for (int i = 0; i < offset; i++) {
+                woLinkList.currEl = currEl.getPrev();
+//                System.out.println("in lap:");
+//                System.out.println("offset = " + offset + ", " + "current id: " + currEl.w_order.getId());
+            }
+        }
+//        System.out.println("as result: offset = " + offset + ", " + "current id: " + currEl.w_order.getId());
     }
     public int getElementsCount()
     {

@@ -214,16 +214,13 @@ public class WOrder {
      * @return
      */
     public static String showHeaderForMenu() {
-//        return String.format("WO id: %d, %s, %s, %s, %s, %s, %s", %d, %s ",
-//        idWO, wPlace, wType, wDate, wBegin, wEnd, wDuration, wDistance, wDescription);
-//        return String.format("|   %-5d | %s-%s-%s |  %s:%s | %s:%s  |  %5s   | %-15s   | %-18s | %-3s | %s",
-//                wo.getId(),
-//                wo.recordsList.get(0).getwDateDay(), wo.recordsList.get(0).getwDateMonth(),  wo.recordsList.get(0).getwDateYear(),
-//                wBeginHours, wBeginMinutes, wEndHours, wEndMinutes,  wDuration, wPlace,  wType, wDistance, wDescription);
-//        System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+        String offset = "     ";
+        String resultString = "";
         System.out.println("=================================================================================================================================");
+        // Добавляем отступ
+        resultString = resultString + offset;
         // Добавляем id вркордера
-        String resultString = "|  id   "; // id
+        resultString += "|  id   "; // id
         // Добавляем иия воркордера
         resultString += "|     WO     ";
         // Добавляем первую дату начала работ
@@ -248,8 +245,20 @@ public class WOrder {
      * @return
      */
     public static String getBriefWOInfo(WOrder wo) {
-        // Добавляем id вркордера
-        String resultString = String.format("| %5d ", wo.getId());
+        String resultString = "";
+        String offset = "";
+        // Добавляем отступ
+//        System.out.println("Проверка:---------------------------------");
+//        System.out.println("woLinkList.currEl.w_order.getId() = " + woLinkList.currEl.w_order.getId());
+//        System.out.println("wo.getId() = " + wo.getId());
+        if (woLinkList.currEl.w_order.getId() == wo.getId()) {
+            offset = ">>>>>";
+        } else {
+            offset = "     ";
+        }
+        resultString += offset;
+        // Добавляем id воркордера
+        resultString += String.format("| %5d ", wo.getId());
         // Добавляем иия воркордера
         resultString += String.format("| %10s ", wo.getWoName());
         // Добавляем первую дату начала работ
@@ -283,7 +292,7 @@ public class WOrder {
             resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getBrand());
             resultString += String.format(" | %-10s", get_mapMashineById().get(wo.getIdMash()).getModel());
             resultString += String.format(" | %-10s |", get_mapMashineById().get(wo.getIdMash()).getsNumber());
-            resultString += "\n         работы: ";
+            resultString += "\n     |    работы: ";
             for (int j = 0; j < wo.recordsList.size(); j++) {
                 if (!wo.recordsList.get(j).getwDescription().contains("дорога")) {
                     resultString += wo.recordsList.get(j).getwDescription() + "; ";
@@ -291,6 +300,7 @@ public class WOrder {
             }
 
 //        String datesString = "";
+//        System.out.println();
         return resultString;
     }
 }

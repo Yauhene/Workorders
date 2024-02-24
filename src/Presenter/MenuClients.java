@@ -21,8 +21,10 @@ public class MenuClients {
         while (!getOut) {
             Viewer.screenClear();
             clientsListShow(Client.getClients_mapById());
+            System.out.println(bottomMenu("Опции работы с клиентами:"));
             respondString = "";
             System.out.print("Ваш выбор: ");
+//            Временная заглушка чтения ответадля автоматического выхода
             respondString = scan.nextLine();
             switch (respondString) {
                 case "1" : {
@@ -62,16 +64,48 @@ public class MenuClients {
     }
 
     public static void clientsListShow(HashMap<Integer, Client> map ){
+        String resultString = "";
         Client client;
+        int currClient = 0;
+        ArrayList<Client> clArray = new ArrayList<>();
         for ( Map.Entry entry: map.entrySet()) {
             client = (Client) entry.getValue();
-            System.out.println(entry.getKey() + " " + client.getName() + " " + client.getLocPlace() + " " + client.getcType());
-//            System.out.println(entry);
+            clArray.add(client);
         }
-
+        int showSize = 10; // количество выводимых клиентов
+        if (showSize > clArray.size()) { showSize = clArray.size();} // переопределение на случай если элементов массива меньше десяти
+        for (int i = 0; i < showSize; i++) {
+            if (i != currClient) { resultString += "     ";}
+            else { resultString += ">>>>>"; }
+            resultString += " |      " + clArray.get(i).getId(); // id
+            resultString += String.format("| %-21s", clArray.get(i).getName()); // name
+            resultString += String.format("| %-17s", clArray.get(i).getLocPlace()); // place
+            resultString += String.format("| %-21s ", clArray.get(i).getLocStreet()); // street
+            resultString += String.format("| %-8s ", clArray.get(i).getLocBuilding()); // building
+            resultString += " |  " + clArray.get(i).getLocOffice(); // office
+            resultString += " |  " + clArray.get(i).getcType() + "\n"; // type
+//
+        }
+        System.out.println(showHeaderForClientMenu());
+        System.out.println(resultString);
     }
 
-//    public static void clientsListShow(Client.getClients_mapById()) {
-//
-//    }
+    public static String showHeaderForClientMenu() {
+        String offset = "      ";
+        String resultString = offset + "Список клиентов:\n";
+        resultString += offset;
+        resultString += "=================================================================================================================================\n";
+        resultString += offset;
+        resultString += "|  id   "; // Добавляем id клиента
+        resultString += String.format("| %-20s ", "Название"); // Добавляем иия клиента
+        resultString += "|  Нас.пункт       "; // Добавляем расположение клиента
+        resultString += String.format("| %-21s ", "Улица");// Добавляем улицу
+        resultString += "| Дом/корп. "; // Добавляем номер дома
+        resultString += String.format("|%-4s", "Офис"); // Добавляем офис клиента
+        resultString += String.format("| %-15s", "Тип") + "\n"; // Добавляем тип клиента
+        resultString += offset;
+        resultString += "=================================================================================================================================";
+
+        return resultString;
+    }
 }

@@ -20,8 +20,11 @@ public class Viewer {
             System.out.println(bottomMainMenu());
             respondString = "";
             System.out.print("Ваш выбор: ");
-            respondString = scan.nextLine();
-            switch (respondString) {
+//            Временная заглушка чтения из командной строки
+//            respondString = scan.nextLine();
+//            Отладочное значение для быстрого перехода к меню "Клиенты"
+            respondString = "2";
+                    switch (respondString) {
                 case "1" : {
                     System.out.println("Меню воркордеров в разработке");
                     break;
@@ -93,10 +96,11 @@ public class Viewer {
     }
 
     public static String bottomMenu(String category) {
-        String outString = " " + category;
-        System.out.println("=================================================================================================================================");
-        outString += ": \n" ;
-        outString += " 0 - Выход; " + "1 - Найти; " + "2 - Выбрать; " + "3 - Редактировать; " + "4 - Добавить" + "5 - Удалить";
+        String offset = "      ";
+        String outString = offset + category + "\n";
+        outString += offset + "=================================================================================================================================";
+        outString += "\n" ;
+        outString += offset + "0 - Выход; " + "1 - Найти; " + "2 - Выбрать; " + "3 - Редактировать; " + "4 - Добавить; " + "5 - Удалить\n";
         return outString;
 
     }

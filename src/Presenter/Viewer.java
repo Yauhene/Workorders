@@ -47,7 +47,8 @@ public class Viewer {
                     break;
                 }
             }
-
+//            Отладочное значение для быстрого выхода из меню"
+            getOut = true;
         }
 
 

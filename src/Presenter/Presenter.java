@@ -23,7 +23,7 @@ public class Presenter {
         }
 
     }
-    public static String getMenuAnswer(woLinkList woList) {
+    public static String getMenuAnswer(woLinkList woList) throws IOException {
         String result = Viewer.mainMenu(woList);
         return result;
     }

@@ -1,14 +1,16 @@
 package Presenter;
 
 import Data.*;
+import filesOperations.*;
 
+import java.io.*;
 import java.util.*;
 
-import static Data.WOrder.getBriefWOInfo;
+import static Data.WOrder.*;
 
 public class Viewer {
 
-    public static String mainMenu(woLinkList woList) {
+    public static String mainMenu(woLinkList woList) throws IOException {
         String result = "";
         boolean getOut = false; // флаг выхода из главного меню
         String respondString = ""; // строка-ответ
@@ -21,9 +23,9 @@ public class Viewer {
             respondString = "";
             System.out.print("Ваш выбор: ");
 //            Временная заглушка чтения из командной строки
-//            respondString = scan.nextLine();
+            respondString = scan.nextLine();
 //            Отладочное значение для быстрого перехода к меню "Клиенты"
-            respondString = "2";
+//            respondString = "2";
                     switch (respondString) {
                 case "1" : {
                     System.out.println("Меню воркордеров в разработке");
@@ -37,7 +39,10 @@ public class Viewer {
                     System.out.println("Меню машин в разработке");
                     break;
                 }
-                case "0", "" : {
+                case "0" : {
+                    in_out.WO_to_File("src/Files/workorders.txt");
+                    Mashine.mashines_to_File("src/Files/mashines.txt");
+                    Client.clients_to_File("src/Files/clients.txt");
                     System.out.println("Пока-пока! ---------------------------------------------------");
                     getOut = true;
                     break;
@@ -48,11 +53,8 @@ public class Viewer {
                 }
             }
 //            Отладочное значение для быстрого выхода из меню"
-            getOut = true;
+//            getOut = true;
         }
-
-
-
         return result;
     }
 
@@ -90,8 +92,10 @@ public class Viewer {
         String outString = " ";
         System.out.println("=================================================================================================================================");
         outString += " Категории: \n" ;
-        outString += " 0 - Выход; " + "1 - Воркордеры; " + "2 - Клиенты; " + "3 - Машины; ";
-
+        outString += " 0 - Выход; " + "1 - Воркордеры; " + "2 - Клиенты; " + "3 - Машины; \n";
+        outString += "Перемещения: \n";
+        outString += "d ('Down') - вниз на позицию, d3 - вниз на 3 позиции и так далее. \n";
+        outString += "u ('Up') - вверх на позицию, u3 - вверх на 3 позиции и так далее. \n";
 
         return outString;
     }

@@ -41,8 +41,8 @@ public class MenuClients {
                     break;
                 }
                 case "4" : {
-                    System.out.println(ifElseTest());
-//                    addClient();
+//                    System.out.println(ifElseTest());
+                    addClient();
                     break;
                 }
                 case "5" : {
@@ -107,6 +107,7 @@ public class MenuClients {
         if (!cType_5.equals("oops")) {
 //            fieldsArr.add(cType_5);
             client = Client.addNewClient(getMaxId() + 1, name_0, locPlace_1, locStreet_2, locBuilding_3, locOffice_4, cType_5);
+            System.out.println(client);
             Client.addClientInMapById(client);
         }
     }
@@ -117,7 +118,7 @@ public class MenuClients {
      * @param prompt - подсказка (имя вводимого поля)
      * @return
      */
-    public static String takeString(String prompt) {
+    public static String takeString_old(String prompt) {
         String result = "";
         Scanner scanner = new Scanner(System.in);
         String answer = "";
@@ -128,16 +129,12 @@ public class MenuClients {
         System.out.println("Введите " + prompt + ":");
         System.out.println("Для пропуска поля нажмите 'Enter'.");
         answer = scanner.nextLine();
-//        System.out.println("Первый ввод, answer = " + answer);
-//        System.out.println("answer.equals(\"oops\") = " + (answer.equals("oops") || answer.equals("ой")));
         if (answer.equals("oops") || answer.equals("ой")) {
             alarm = true;
             System.out.println("alarm = " + alarm);
             System.out.println("answer = " + answer);
-//            onceMore = false;
             result = "oops";
         }
-
         while (onceMore == true) {
 
             if (answer.equals("")) {
@@ -179,6 +176,57 @@ public class MenuClients {
         } else {
             return "oops";
         }
+    }
+
+    public static String takeString(String prompt) {
+        String result = "";
+        Scanner scanner = new Scanner(System.in);
+        String answer = "";
+        String choice = "";
+//        boolean alarm = false;
+        boolean onceMore = true;
+
+        System.out.println("Введите " + prompt + ":");
+        System.out.println("Для пропуска поля нажмите 'Enter'.");
+        answer = scanner.nextLine();
+        if (answer.equals("oops") || answer.equals("ой")) {
+            result = "oops";
+        } else if (answer.equals("")) {
+            while (onceMore) {
+                System.out.println("Внесено пустое значение, '-'. Вы подтверждаете его ввод?");
+                choice = scanner.nextLine();
+                if (choice.equals("oops") || choice.equals("ой")) {
+                    result = "oops";
+                    onceMore = false;
+                } else if (choice.equals("")) {
+                    result = answer;
+                    onceMore = false;
+                } else if (choice.equals("n") || choice.equals("N") ||
+                        choice.equals("н") || choice.equals("Н")) {
+                    onceMore = true;
+                }
+            }
+            result = "-";
+        } else {
+            while (onceMore) {
+                System.out.println("Вы подтверждаете ввод?");
+                choice = scanner.nextLine();
+                if (choice.equals("oops") || choice.equals("ой")) {
+                    result = answer;
+                    onceMore = false;
+                } else if (choice.equals("")) {
+                    result = answer;
+                    onceMore = false;
+                } else if (choice.equals("n") || choice.equals("N") ||
+                        choice.equals("н") || choice.equals("Н")) {
+                    onceMore = true;
+                    System.out.println("Введите верное значение:");
+                    answer = scanner.nextLine();
+                }
+            }
+            result = answer;
+        }
+        return result;
     }
 
     public static String ifElseTest() {

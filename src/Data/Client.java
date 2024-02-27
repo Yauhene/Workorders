@@ -76,8 +76,6 @@ public class Client {
              System.out.println("Ошибка!!! Мапа clients_mapById уже содержит такой ключ.");
          }
 
-
-//        getClients_mapById().put();
     }
 
     /**
@@ -147,6 +145,25 @@ public class Client {
 
     }
 
+    /**
+     * Функция создания нового экземпляра класса извне
+     * @param id
+     * @param name
+     * @param locPlace
+     * @param locStreet
+     * @param locBuilding
+     * @param locOffice
+     * @param cType
+     * @return
+     */
+    public static Client addNewClient(int id, String name, String locPlace, String locStreet, String locBuilding, String locOffice, String cType) {
+        Client client = new Client(maxId + 1, name, locPlace, locStreet, locBuilding, locOffice, cType);
+        maxId ++;
+        return client;
+    }
+    public static void setMaxId(int maxId) {
+        Client.maxId = maxId;
+    }
 
     @Override
     public String toString() {

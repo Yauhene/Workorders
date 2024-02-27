@@ -15,7 +15,7 @@ public class Viewer {
         Scanner scan = new Scanner(System.in);
 
         while (!getOut) {
-            screenClear();
+//            screenClear();
             listShow(Presenter.woListForPresenter, 7);
             System.out.println(bottomMainMenu());
             respondString = "";

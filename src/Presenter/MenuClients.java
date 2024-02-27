@@ -4,6 +4,7 @@ import Data.*;
 
 import java.util.*;
 
+import static Data.Client.getMaxId;
 import static Presenter.Viewer.*;
 
 public class MenuClients {
@@ -19,7 +20,7 @@ public class MenuClients {
 
         System.out.println(bottomMenu("Клиенты"));
         while (!getOut) {
-            Viewer.screenClear();
+//            Viewer.screenClear();
             clientsListShow(Client.getClients_mapById());
             System.out.println(bottomMenu("Опции работы с клиентами:"));
             respondString = "";
@@ -40,7 +41,7 @@ public class MenuClients {
                     break;
                 }
                 case "4" : {
-                    System.out.println("Меню Добавить в разработке");
+                    addClient();
                     break;
                 }
                 case "5" : {
@@ -61,6 +62,121 @@ public class MenuClients {
         }
 
 //        return result;
+    }
+
+    /** Процедура добавления клиента (меню "Клиент")
+     *
+     */
+    private static void addClient() {
+//       ArrayList<String> fieldsArr = new ArrayList<>();
+        String name_0 = "";
+        String locPlace_1 = "";
+        String locStreet_2 = "";
+        String locBuilding_3 = "";
+        String locOffice_4 = "";
+        String cType_5 = "";
+        Client client = null;
+        name_0 = takeString("название клиента");
+        System.out.println();
+        if (!name_0.equals("oops")) {
+//            fieldsArr.add(name_0);
+            locPlace_1 = takeString("название населенного пункта");
+            System.out.println();
+        }
+        if (!locPlace_1.equals("oops")) {
+//            fieldsArr.add(locPlace_1);
+            locStreet_2 = takeString("название улицы");
+            System.out.println();
+        }
+        if (!locStreet_2.equals("oops")) {
+//            fieldsArr.add(locStreet_2);
+            locBuilding_3 = takeString("номер дома/корпуса");
+            System.out.println();
+        }
+        if (!locBuilding_3.equals("oops")) {
+//            fieldsArr.add(locBuilding_3);
+            locOffice_4 = takeString("номер офиса");
+            System.out.println();
+        }
+        if (!locOffice_4.equals("oops")) {
+//            fieldsArr.add(locOffice_4);
+            cType_5 = takeString("тип клиента (стройка, агро, отстрел бродячих хомяков и т. п.");
+            System.out.println();
+        }
+        if (!cType_5.equals("oops")) {
+//            fieldsArr.add(cType_5);
+            client = Client.addNewClient(getMaxId() + 1, name_0, locPlace_1, locStreet_2, locBuilding_3, locOffice_4, cType_5);
+            Client.addClientInMapById(client);
+        }
+    }
+
+    /**
+     * Функция построения строки-значения поля для процедуры addClient()
+     * При отказе пользователя от продолжения ввода выдает "oops" как результирующую строку
+     * @param prompt - подсказка (имя вводимого поля)
+     * @return
+     */
+    public static String takeString(String prompt) {
+        String result = "";
+        Scanner scanner = new Scanner(System.in);
+        String answer = "";
+        String choice = "";
+        boolean alarm = false;
+        boolean onceMore = true;
+
+
+
+        while (onceMore == true) {
+            System.out.println("Введите " + prompt + ":");
+            System.out.println("Для пропуска поля нажмите 'Enter'.");
+            answer = scanner.nextLine();
+            System.out.println("Первый ввод, answer = " + answer);
+            System.out.println("answer.equals(\"oops\") = " + (answer.equals("oops") || answer.equals("ой")));
+            if (answer.equals("oops") || answer.equals("ой")) {
+                alarm = true;
+                System.out.println("alarm = " + alarm);
+                System.out.println("answer = " + answer);
+                onceMore = false;
+            }
+            if (answer.equals("")) {
+                    System.out.println("Внесено пустое значение, '-'.");
+                    answer = "-";
+                    System.out.println("Вносим данное значение? Введите 'N' или 'Н' для отказа или 'Enter' для сохранения.");
+                    choice = scanner.nextLine();
+                    if (choice.equals("oops") || choice.equals("ой")) {
+                        alarm = true;
+                        onceMore = false;
+                    } else {
+                        if (choice.equals("")) {
+                            onceMore = false;
+                            result = answer;
+                        }
+                        if (choice.equals("N") || choice.equals("n") ||
+                                choice.equals("Н") || choice.equals("н")) {
+                            onceMore = true;
+                        }
+                    }
+            } else {
+                System.out.println("Вносим данное значение? Введите 'N' или 'Н' для отказа или 'Enter' для сохранения.");
+                choice = scanner.nextLine();
+                if (choice.equals("N") || choice.equals("n") ||
+                        choice.equals("Н") || choice.equals("н")) {
+                    onceMore = true;
+                }
+                if (choice.equals("")) {
+                    onceMore = false;
+                    result = answer;
+                }
+
+            }
+
+
+        }
+        if (!alarm) {
+            return answer;
+        } else {
+            return "oops";
+        }
     }
 
     public static void clientsListShow(HashMap<Integer, Client> map ){

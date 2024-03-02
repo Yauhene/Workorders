@@ -169,4 +169,13 @@ public class Model {
         String s = scanner.nextLine();
     }
 
+    /**
+     * Функция поиска клиента по имени
+     * @param clName
+     * @return
+     */
+    public static int findClientByName(String clName) {
+        return 11111;
+    }
+
 }

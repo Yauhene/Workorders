@@ -19,7 +19,7 @@ public class Presenter {
 
         while (!command.equals("exit")) {
             command = getMenuAnswer(woListForPresenter);
-            command = "exit";
+//            command = "exit";
         }
 
     }

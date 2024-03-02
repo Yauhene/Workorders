@@ -13,8 +13,24 @@ public class Client {
     private String locBuilding;
     private String locOffice;
     private String cType;
+    private static int currClientPosition = 0;
 
     private static HashMap<Integer, Client> clients_mapById = new HashMap<>() ;
+    private static HashMap<String, Client> clients_mapByName = new HashMap<>();
+
+    public static int getCurrClientPosition() {
+        return currClientPosition;
+    }
+
+    public static HashMap<String, Client> getClients_mapByName() {
+        return clients_mapByName;
+    }
+
+    public static ArrayList<Client> getClients_array() {
+        return clients_array;
+    }
+
+    private static ArrayList<Client> clients_array = new ArrayList();
 
      private Client (int id, String name, String locPlace, String locStreet, String locBuilding, String locOffice, String cType) {
          this.id = id;
@@ -25,6 +41,10 @@ public class Client {
          this.locOffice = locOffice;
          this.cType = cType;
          if (maxId < this.id) maxId = this.id;
+
+         addClientInMapById(this);
+         addClientInMapByName(this);
+         addClientInArray(this);
 
      }
 
@@ -68,6 +88,10 @@ public class Client {
          return clients_mapById;
     }
 
+    public static void setCurrClientPosition(int currClientPosition) {
+        Client.currClientPosition = currClientPosition;
+    }
+
     public static void addClientInMapById(Client client) {
          if (!clients_mapById.containsKey(client.getId())) {
              clients_mapById.put(client.getId(),client);
@@ -75,7 +99,19 @@ public class Client {
          else {
              System.out.println("Ошибка!!! Мапа clients_mapById уже содержит такой ключ.");
          }
+    }
 
+    public static void addClientInMapByName(Client client) {
+        if (!clients_mapByName.containsKey(client.getName())) {
+            clients_mapByName.put(client.getName(),client);
+        }
+        else {
+            System.out.println("Ошибка!!! Мапа clients_mapById уже содержит такой ключ.");
+        }
+    }
+
+    public static void addClientInArray(Client client) {
+        clients_array.add(client);
     }
 
     /**
@@ -106,7 +142,7 @@ public class Client {
                         tempStrArr[5].trim(), // номер офиса
                         tempStrArr[6].trim());// тип клиента
 
-                Client.addClientInMapById(client);
+//                Client.addClientInMapById(client);
             }
         } catch (Exception e) {
             e.printStackTrace();

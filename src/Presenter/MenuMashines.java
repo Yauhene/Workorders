@@ -4,20 +4,10 @@ import Data.*;
 
 import java.util.*;
 
-import static Data.Mashine.getMaxId;
-import static Presenter.Viewer.bottomMenu;
-
-public class MenuMashines {
-    package Presenter;
-
-import Data.*;
-
-import java.util.*;
-
-import static Data.Mashine.getMaxId;
+import static Presenter.MenuClients.*;
 import static Presenter.Viewer.*;
 
-    public class MenuMashines {
+public class MenuMashines {
 
         public static void menu() {
             String result = "";
@@ -31,7 +21,7 @@ import static Presenter.Viewer.*;
             System.out.println(bottomMenu("Машины"));
             while (!getOut) {
 //            Viewer.screenClear();
-                clientsListShow(Client.getClients_mapById());
+                clientsListShow(Client.getClients_array(), Client.getCurrClientPosition());
                 System.out.println(bottomMenu("Опции работы с машинами:"));
                 respondString = "";
                 System.out.print("Ваш выбор: ");
@@ -83,7 +73,7 @@ import static Presenter.Viewer.*;
             String brand_0 = "";
             String model_1 = "";
             String sNumber_2 = "";
-            String idClient_3 = "";
+            int idClient_3 = -1;
             Mashine mashine = null;
             brand_0 = takeString("название бренда");
             System.out.println();
@@ -101,25 +91,28 @@ import static Presenter.Viewer.*;
 //            fieldsArr.add(locStreet_2);
 
 
-//                !!!!!!!!!  НА ДАННОМ ЭТАПЕ ПОТУХ, НУЖНО ДЕЛАТЬ ВВОД НОВОЙ МАШИНЫ ЧЕРЕЗ МЕНЮ КЛИЕНТА   !!!!!!!!!!
-                locBuilding_3 = takeString("номер дома/корпуса");
+//                !!!!!!!!!  функция  findClientByName() пока не существует, нужно написать  !!!!!!!!!!
+
+                idClient_3 = menuFindClientByName();
                 System.out.println();
             }
-            if (!locBuilding_3.equals("oops")) {
-//            fieldsArr.add(locBuilding_3);
-                locOffice_4 = takeString("номер офиса");
-                System.out.println();
-            }
-            if (!locOffice_4.equals("oops")) {
-//            fieldsArr.add(locOffice_4);
-                cType_5 = takeString("тип клиента (стройка, агро, отстрел бродячих хомяков и т. п.");
-                System.out.println();
-            }
-            if (!cType_5.equals("oops")) {
+//            if (!locBuilding_3.equals("oops")) {
+////            fieldsArr.add(locBuilding_3);
+//                locOffice_4 = takeString("номер офиса");
+//                System.out.println();
+//            }
+//            if (!locOffice_4.equals("oops")) {
+////            fieldsArr.add(locOffice_4);
+//                cType_5 = takeString("тип клиента (стройка, агро, отстрел бродячих хомяков и т. п.");
+//                System.out.println();
+//            }
+            if (idClient_3 > 0) {
 //            fieldsArr.add(cType_5);
-                client = Client.addNewClient(getMaxId() + 1, name_0, locPlace_1, locStreet_2, locBuilding_3, locOffice_4, cType_5);
-                System.out.println(client);
-                Client.addClientInMapById(client);
+//                int intIdClient = Integer.parseInt(idClient_3);
+                mashine = new Mashine(Mashine.getMaxId() + 1, brand_0, model_1, sNumber_2, idClient_3);
+                Mashine.addMashineInMapById(mashine);
+                System.out.println(mashine);
+                Mashine.addMashineInMapById(mashine);
             }
         }
 
@@ -327,6 +320,16 @@ import static Presenter.Viewer.*;
 
             return resultString;
         }
+
+    public static int menuFindClientByName() {
+        int result = -1;
+        String answer = "";
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите имя клиента:");
+        answer = scanner.nextLine();
+
+
+        return result;
     }
 
 }

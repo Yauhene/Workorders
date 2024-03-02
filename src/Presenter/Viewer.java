@@ -36,7 +36,8 @@ public class Viewer {
                     break;
                 }
                 case "3" : {
-                    System.out.println("Меню машин в разработке");
+//                    System.out.println("Меню машин в разработке");
+                    MenuMashines.menu();
                     break;
                 }
                 case "0" : {
@@ -45,6 +46,7 @@ public class Viewer {
                     Client.clients_to_File("src/Files/clients.txt");
                     System.out.println("Пока-пока! ---------------------------------------------------");
                     getOut = true;
+                    result = "exit";
                     break;
                 }
                 default: {

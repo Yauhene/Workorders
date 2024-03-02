@@ -4,7 +4,7 @@ import Data.*;
 
 import java.util.*;
 
-import static Data.Client.getMaxId;
+import static Data.Client.*;
 import static Presenter.Viewer.*;
 
 public class MenuClients {
@@ -14,6 +14,10 @@ public class MenuClients {
         boolean getOut = false; // флаг выхода из главного меню
         String respondString = ""; // строка-ответ
         Scanner scan = new Scanner(System.in);
+        int currClient = 0;
+        char firstSimbol;
+        String secondAndMore;
+        int shiftNumber = 0;
 //        listShow(Presenter.woListForPresenter, 7);
 //        showHeaderForMenu();   !!! Уйдет в clientsListShow
 
@@ -21,12 +25,40 @@ public class MenuClients {
         System.out.println(bottomMenu("Клиенты"));
         while (!getOut) {
 //            Viewer.screenClear();
-            clientsListShow(Client.getClients_mapById());
+//            System.out.println("position by getCurrClientPosition(): " + getCurrClientPosition());
+//            moveDown(1);
+//            System.out.println("position by getCurrClientPosition(): " + getCurrClientPosition());
+            clientsListShow(Client.getClients_array(), Client.getCurrClientPosition());
             System.out.println(bottomMenu("Опции работы с клиентами:"));
             respondString = "";
             System.out.print("Ваш выбор: ");
 //            Временная заглушка чтения ответадля автоматического выхода
             respondString = scan.nextLine();
+
+// Обработка команд вида d(x) и u(x)
+            if (!respondString.matches("[0-9]+")) {
+                firstSimbol = respondString.charAt(0);
+                if (firstSimbol == 'd') {
+                    secondAndMore = respondString.substring(1);
+                    if (respondString.substring(1).matches("[0-9]+")) {
+                         shiftNumber = Integer.parseInt(secondAndMore);
+                         respondString = "d";
+                    } else {
+                        System.out.println("Ошибочный ввод команды");
+                    }
+                }
+                if (firstSimbol == 'u') {
+                    secondAndMore = respondString.substring(1);
+                    if (respondString.substring(1).matches("[0-9]+")) {
+                        shiftNumber = Integer.parseInt(secondAndMore);
+                        respondString = "u";
+                    } else {
+                        System.out.println("Ошибочный ввод команды");
+                    }
+                }
+            }
+
+
             switch (respondString) {
                 case "1" : {
                     System.out.println("Меню Найти в разработке");
@@ -47,6 +79,16 @@ public class MenuClients {
                 }
                 case "5" : {
                     System.out.println("Меню Удалить в разработке");
+                    break;
+                }
+                case "d" : {
+                    moveDown(shiftNumber);
+                    getOut = false;
+                    break;
+                }
+                case "u" : {
+                    moveUp(shiftNumber);
+                    getOut = false;
                     break;
                 }
                 case "0", "" : {
@@ -276,19 +318,20 @@ public class MenuClients {
 
         return result;
     }
-    public static void clientsListShow(HashMap<Integer, Client> map ){
+    public static void clientsListShow(ArrayList<Client> clArray, int position ){
         String resultString = "";
         Client client;
-        int currClient = 0;
-        ArrayList<Client> clArray = new ArrayList<>();
-        for ( Map.Entry entry: map.entrySet()) {
-            client = (Client) entry.getValue();
-            clArray.add(client);
-        }
+//        int currClient = 0;
+//        ArrayList<Client> clArray = new ArrayList<>();
+//        for ( Map.Entry entry: map.entrySet()) {
+//            client = (Client) entry.getValue();
+//            clArray.add(client);
+//        }
         int showSize = 10; // количество выводимых клиентов
         if (showSize > clArray.size()) { showSize = clArray.size();} // переопределение на случай если элементов массива меньше десяти
-        for (int i = 0; i < showSize; i++) {
-            if (i != currClient) { resultString += "     ";}
+        if ((clArray.size() - position) > showSize) {showSize = clArray.size() - position;}
+        for (int i = position; i < showSize; i++) {
+            if (i != position) { resultString += "     ";}
             else { resultString += ">>>>>"; }
             resultString += " |      " + clArray.get(i).getId(); // id
             resultString += String.format("| %-21s", clArray.get(i).getName()); // name
@@ -320,5 +363,15 @@ public class MenuClients {
         resultString += "=================================================================================================================================";
 
         return resultString;
+    }
+    public static void moveDown(int posDown) {
+        Client.setCurrClientPosition(getCurrClientPosition() + posDown);
+    }
+    public static void moveUp(int posUp) {
+        if (getCurrClientPosition() - posUp >= 0) {
+            Client.setCurrClientPosition(getCurrClientPosition() - posUp);
+        } else {
+            Client.setCurrClientPosition(0);
+        }
     }
 }

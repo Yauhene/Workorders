@@ -8,7 +8,7 @@ public class Mashine {
     private static FileWriter writer;
     private int id;
 
-    private int maxId = 0;
+    private static int maxId = 0;
     private String brand;
     private String model;
     private String sNumber;
@@ -44,6 +44,9 @@ public class Mashine {
                         tempStrArr[2].trim(), // модель
                         tempStrArr[3].trim(), // серийный номер
                         Integer.parseInt(tempStrArr[4].trim())); // id клиента
+                if (mashine.getId() > maxId) {
+                    maxId = mashine.id;
+                }
 //                System.out.println();
 //                System.out.println("Распечатка из Mashine.mashines_from_File после создания экземпляра машины");
 //                System.out.println(mashine);
@@ -92,6 +95,9 @@ public class Mashine {
 
 
     public static void addMashineInMapById(Mashine mashine) {
+//        if (mashine.getId() = null) {
+//            mashine.setId(Mashine.getMaxId + 1);
+//        }
 //        System.out.println();
 //        System.out.println("Распечатка из Mashine.addMashineInMapById на входе");
 //        System.out.println("Mashine: \n" + mashine);
@@ -141,7 +147,7 @@ public class Mashine {
             return id;
         }
 
-        public int getMaxId () {
+        public static int getMaxId () {
             return maxId;
         }
 
@@ -165,4 +171,8 @@ public class Mashine {
             return mapMashineById;
         }
 
+
+    public void setId(int id) {
+        this.id = id;
     }
+}

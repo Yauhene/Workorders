@@ -17,15 +17,16 @@ public class MenuFindClient {
 
         while (!getOut) {
 
-//            System.out.println("------- вошли в цикл");
+            System.out.println("------- вошли в цикл");
 
             System.out.println("Введите образец поиска:");
             String temp = scanner.nextLine();
-            System.out.println("Результаты поиска:");
             ArrayList<Client> arr = Client.findClient(temp);
             System.out.println("arrPosition: " + arrPosition);
             if (arr.size() > 0) {
                 currentClient = arr.get(0);
+
+                System.out.println("Результаты поиска:");
                 clientsFoundListShow(arr, 0);
             } else {
 //                currentClient = null;
@@ -69,8 +70,12 @@ public class MenuFindClient {
                 }
             }
             arrPosition += shiftNumber;
+            if (temp.equals("")) {
+                System.out.println("Нажат Enter//////" );
+            }
 
             switch (temp) {
+
                 case "0": {
                     System.out.println("------ зашли в '0'");
 //                    System.out.println("Меню Найти в разработке");
@@ -80,11 +85,12 @@ public class MenuFindClient {
                     break;
                 }
                 case "": {
+
                     System.out.println("------ зашли в Редактирование " );
                     result = currentClient;
 //                    System.out.println("Меню Выбрать в разработке");
                     MenuEditClient.menuEditClient(currentClient);
-                    getOut = true;
+                    getOut = false;
                     break;
                 }
                 case "d": {
@@ -95,6 +101,7 @@ public class MenuFindClient {
 //                    arrPosition += shiftNumber;
 //                    clientsListShow(arr, arrPosition);
                     clientsFoundListShow(arr, arrPosition);
+                    currentClient = arr.get(arrPosition);
                     getOut = false;
                     break;
                 }

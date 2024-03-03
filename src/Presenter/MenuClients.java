@@ -64,6 +64,7 @@ public class MenuClients {
                 case "1": {
                     currentClient = MenuFindClient.findClientForChoice();
                     MenuEditClient.menuEditClient(currentClient);
+                    System.out.println("По идее - вернулись в case \"1\": меню Клиент");
                     break;
                 }
                 case "": {

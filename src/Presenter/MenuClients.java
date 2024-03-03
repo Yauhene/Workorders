@@ -18,6 +18,7 @@ public class MenuClients {
         char firstSimbol;
         String secondAndMore;
         int shiftNumber = 0;
+        Client currentClient;
 //        listShow(Presenter.woListForPresenter, 7);
 //        showHeaderForMenu();   !!! Уйдет в clientsListShow
 
@@ -36,13 +37,13 @@ public class MenuClients {
             respondString = scan.nextLine();
 
 // Обработка команд вида d(x) и u(x)
-            if (!respondString.matches("[0-9]+")) {
+            if (respondString.length() > 1 && !respondString.matches("[0-9]+")) {
                 firstSimbol = respondString.charAt(0);
                 if (firstSimbol == 'd') {
                     secondAndMore = respondString.substring(1);
                     if (respondString.substring(1).matches("[0-9]+")) {
-                         shiftNumber = Integer.parseInt(secondAndMore);
-                         respondString = "d";
+                        shiftNumber = Integer.parseInt(secondAndMore);
+                        respondString = "d";
                     } else {
                         System.out.println("Ошибочный ввод команды");
                     }
@@ -60,38 +61,38 @@ public class MenuClients {
 
 
             switch (respondString) {
-                case "1" : {
-                    System.out.println("Меню Найти в разработке");
+                case "1": {
+                    currentClient = MenuFindClient.findClientForChoice();
+                    MenuEditClient.menuEditClient(currentClient);
                     break;
                 }
-                case "2" : {
+                case "": {
                     System.out.println("Меню Выбрать в разработке");
                     break;
                 }
-                case "3" : {
+                case "3": {
                     System.out.println("Меню Редактировать в разработке");
                     break;
                 }
-                case "4" : {
-//                    System.out.println(ifElseTest());
+                case "4": {
                     addClient();
                     break;
                 }
-                case "5" : {
+                case "5": {
                     System.out.println("Меню Удалить в разработке");
                     break;
                 }
-                case "d" : {
-                    moveDown(shiftNumber);
+                case "d": {
+                    moveDown(Client.getClients_array(), shiftNumber);
                     getOut = false;
                     break;
                 }
-                case "u" : {
-                    moveUp(shiftNumber);
+                case "u": {
+                    moveUp(Client.getClients_array(), shiftNumber);
                     getOut = false;
                     break;
                 }
-                case "0", "" : {
+                case "0": {
 //                    System.out.println("Пока-пока! ---------------------------------------------------");
                     getOut = true;
                     break;
@@ -107,8 +108,8 @@ public class MenuClients {
 //        return result;
     }
 
-    /** Процедура добавления клиента (меню "Клиент")
-     *
+    /**
+     * Процедура добавления клиента (меню "Клиент")
      */
     private static void addClient() {
 //       ArrayList<String> fieldsArr = new ArrayList<>();
@@ -153,10 +154,10 @@ public class MenuClients {
             Client.addClientInMapById(client);
         }
     }
-
     /**
      * Функция построения строки-значения поля для процедуры addClient()
      * При отказе пользователя от продолжения ввода выдает "oops" как результирующую строку
+     *
      * @param prompt - подсказка (имя вводимого поля)
      * @return
      */
@@ -180,24 +181,23 @@ public class MenuClients {
         while (onceMore == true) {
 
             if (answer.equals("")) {
-                    System.out.println("Внесено пустое значение, '-'.");
-                    answer = "-";
-                    System.out.println("Вносим данное значение? Введите 'N' или 'Н' для отказа или 'Enter' для сохранения.");
-                    choice = scanner.nextLine();
-                    if (choice.equals("oops") || choice.equals("ой")) {
-                        alarm = true;
-                        onceMore = false;
-                    }
-                    if (choice.equals("")) {
-                        onceMore = false;
-                        result = answer;
-                    }
-                    if (choice.equals("N") || choice.equals("n") ||
-                            choice.equals("Н") || choice.equals("н")) {
-                        onceMore = true;
-                    }
-            } else
-            {
+                System.out.println("Внесено пустое значение, '-'.");
+                answer = "-";
+                System.out.println("Вносим данное значение? Введите 'N' или 'Н' для отказа или 'Enter' для сохранения.");
+                choice = scanner.nextLine();
+                if (choice.equals("oops") || choice.equals("ой")) {
+                    alarm = true;
+                    onceMore = false;
+                }
+                if (choice.equals("")) {
+                    onceMore = false;
+                    result = answer;
+                }
+                if (choice.equals("N") || choice.equals("n") ||
+                        choice.equals("Н") || choice.equals("н")) {
+                    onceMore = true;
+                }
+            } else {
                 System.out.println("Вносим данное значение? Введите 'N' или 'Н' для отказа или 'Enter' для сохранения.");
                 choice = scanner.nextLine();
                 if (choice.equals("N") || choice.equals("n") ||
@@ -208,10 +208,7 @@ public class MenuClients {
                     onceMore = false;
                     result = answer;
                 }
-
             }
-
-
         }
         if (!alarm) {
             return answer;
@@ -297,7 +294,7 @@ public class MenuClients {
                 }
             }
             result = "-";
-        } else  {
+        } else {
             while (onceMore) {
                 System.out.println("Вы подтверждаете ввод? ");
                 choice = scanner.nextLine();
@@ -318,21 +315,23 @@ public class MenuClients {
 
         return result;
     }
-    public static void clientsListShow(ArrayList<Client> clArray, int position ){
+
+    public static void clientsListShow(ArrayList<Client> clArray, int position) {
         String resultString = "";
         Client client;
-//        int currClient = 0;
-//        ArrayList<Client> clArray = new ArrayList<>();
-//        for ( Map.Entry entry: map.entrySet()) {
-//            client = (Client) entry.getValue();
-//            clArray.add(client);
-//        }
         int showSize = 10; // количество выводимых клиентов
-        if (showSize > clArray.size()) { showSize = clArray.size();} // переопределение на случай если элементов массива меньше десяти
-        if ((clArray.size() - position) > showSize) {showSize = clArray.size() - position;}
+        if (showSize > clArray.size()) {
+            showSize = clArray.size();
+        } // переопределение на случай если элементов массива меньше десяти
+        if ((clArray.size() - position) > showSize) {
+            showSize = clArray.size() - position;
+        }
         for (int i = position; i < showSize; i++) {
-            if (i != position) { resultString += "     ";}
-            else { resultString += ">>>>>"; }
+            if (i != position) {
+                resultString += "     ";
+            } else {
+                resultString += ">>>>>";
+            }
             resultString += " |      " + clArray.get(i).getId(); // id
             resultString += String.format("| %-21s", clArray.get(i).getName()); // name
             resultString += String.format("| %-17s", clArray.get(i).getLocPlace()); // place
@@ -340,7 +339,6 @@ public class MenuClients {
             resultString += String.format("| %-8s ", clArray.get(i).getLocBuilding()); // building
             resultString += " |  " + clArray.get(i).getLocOffice(); // office
             resultString += " |  " + clArray.get(i).getcType() + "\n"; // type
-//
         }
         System.out.println(showHeaderForClientMenu());
         System.out.println(resultString);
@@ -361,17 +359,34 @@ public class MenuClients {
         resultString += String.format("| %-15s", "Тип") + "\n"; // Добавляем тип клиента
         resultString += offset;
         resultString += "=================================================================================================================================";
-
         return resultString;
     }
-    public static void moveDown(int posDown) {
+
+    public static void moveDown_old(int posDown) {
         Client.setCurrClientPosition(getCurrClientPosition() + posDown);
     }
-    public static void moveUp(int posUp) {
+
+    public static void moveUp_old(int posUp) {
         if (getCurrClientPosition() - posUp >= 0) {
             Client.setCurrClientPosition(getCurrClientPosition() - posUp);
         } else {
             Client.setCurrClientPosition(0);
         }
     }
+    public static void moveDown(ArrayList<Client> arr, int posDown) {
+        Client.setCurrClientPosition(getCurrClientPosition() + posDown);
+    }
+
+    public static void moveUp(ArrayList<Client> arr, int posUp) {
+        if (getCurrClientPosition() - posUp >= 0) {
+            Client.setCurrClientPosition(getCurrClientPosition() - posUp);
+        } else {
+            Client.setCurrClientPosition(0);
+        }
+    }
+
+
+
+
+
 }

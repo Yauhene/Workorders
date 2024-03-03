@@ -178,6 +178,37 @@ public class Client {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static ArrayList<Client> findClient(String template) {
+        ArrayList<Client> result = new ArrayList<>();
+        boolean like = false;
+        template = template.toLowerCase(Locale.ROOT);
+        for (int i = 0; i < clients_array.size(); i++) {
+//            if (Integer.toString(clients_array.get(i).getId()).contains(template)) ||
+            if ((Integer.toString(clients_array.get(i).getId()).contains(template)) ||
+                    (clients_array.get(i).getName().toLowerCase().contains(template)) ||
+                    (clients_array.get(i).getName().contains(template)) ||
+                    (clients_array.get(i).getLocPlace().contains(template)) ||
+                    (clients_array.get(i).getLocStreet().contains(template)) ||
+                    (clients_array.get(i).getLocBuilding().contains(template)) ||
+                    (clients_array.get(i).getLocOffice().contains(template)) ||
+                    (clients_array.get(i).getcType().contains(template)))
+
+            {
+                like = true;
+                result.add(clients_array.get(i));
+
+            }
+
+        }
+
+        if (result != null) {
+            return result;
+        } else {
+            System.out.println("По данному запросу соответствий не найдено");
+            return result;
+        }
 
     }
 
